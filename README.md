@@ -7,7 +7,7 @@ Application du type "jeu de role" ou l'utilisateur se met dans la peau d'un pers
 
 
 ### Professeur:
-Downloader toutes les images dans le folder images et ouvrir le fichier "Onlife". Pour l'instant il y a un menu avec les boutons jouer et quitter qui marchent. 
+Downloader toutes les images dans le folder images, tous les fichiers .py et ouvrir puis éxécuter le fichier "Onlife". Pour l'instant il y a un menu avec les boutons jouer et quitter qui marchent. 
 
 Le bouton jouer nous emmène à un menu pour sélectionner le sexe. En fonction du sexe choisi, une page principale s'ouvrira avec un personnage aléatoire. Le nom est aussi aléatoire et en fonction du sexe. Il varie entre les noms des 4 personnes du groupe. Il est possible d'appuyer sur les boutons bien être, études et propriétés qui vous ouvriront, chacun, une autre fenêtre (qu'il nous faut encore personnaliser), il sera possible de fermer ces fenêtres avec le bouton pour vous ramener à la page principale. Il est également possible d'appuyer sur le bouton "+ une année" pour avancer dans le jeu ce qui va changer l'âge dans le cadre en haut à gauche de la page principale. 
 
