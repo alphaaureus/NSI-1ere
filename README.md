@@ -52,6 +52,7 @@ Un jeu ludique avec des fins qui diffèrent tout le temps. L'univers explore les
 ### Contrainte
 
 Seulement avec du python
+
 Seulement 16 semaines
 
 
@@ -64,8 +65,7 @@ Aurélie---- Code principal et des sous-parties et relectures du readme
 
 Haroun----- Code le mini-jeu et certaines parties
 
-Rayane----- Code du menu et code de certains éléments
-
+Rayane----- Code du menu et code le mini-jeu
 
 
 
