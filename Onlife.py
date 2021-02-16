@@ -3,7 +3,10 @@ import pygame
 import pygame_menu
 import random
 from pygame.locals import *
-from pygame_menu import sound
+from game import Game
+from player import Vaisseau
+from projectile import Projectile
+
 
 # Initialisation de pygame
 pygame.init()
@@ -515,25 +518,73 @@ def principal(sexe):
                     while bien:
                         pygame.display.update()
                         fenetrebien = pygame.display.set_mode((width,height))
-                        fenetrebien.fill(background_colour)
-                        mouse = pygame.mouse.get_pos()
-
-                        # Bouton retour à la page principale
-                        if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
-                            pygame.draw.rect(fenetrebien,color_light,[50,50,125,50])
-                        else:
-                            pygame.draw.rect(fenetrebien,color_dark,[50,50,125,50])
-                        fenetrebien.blit(retour , (60,50))
-
-                        #  Titre de la page
-                        pygame.draw.rect(fenetrebien,color_dark,[230,25,900,100])
-
-                        # Boucle pour les évènements et pour fermer la page
-                        for event in pygame.event.get():
-                            if event.type == pygame.MOUSEBUTTONDOWN:
-                                if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
-                                    pygame.display.update()
-                                    bien=False
+                        
+                        # importer et charger l'arriere plan
+                        background = pygame.image.load('image1.jpg')
+                        # charger le game
+                        game = Game()
+                        
+                        running= True
+                        
+                        #boucle tant que cette condition est vrai
+                        while running: 
+                            mouse = pygame.mouse.get_pos() 
+                            # appliquer l'arriere plan
+                            fenetrebien.blit(background, (0, 0))
+                            #appliquer l'image du vaisseau
+                            fenetrebien.blit(game.vaisseau.image,game.vaisseau.rect)
+                            
+                            # Bouton retour à la page principale
+                            if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                pygame.draw.rect(fenetrebien,color_light,[50,50,125,50])
+                            else:
+                                pygame.draw.rect(fenetrebien,color_dark,[50,50,125,50])
+                                
+                            fenetrebien.blit(retour , (60,50))
+                        
+                            #recuperer les projectiles du vaisseau
+                            for projectile in game.vaisseau.x_projectiles:
+                                projectile.move()
+                        
+                            # appliquer l'image du projectiles
+                            game.vaisseau.x_projectiles.draw(fenetrebien)
+                        
+                            #ajouter un son pour le projectile
+                            son = pygame.mixer.Sound('laser.mp3')
+                            # verifier si le joueur veut aller a gauche ou a droite
+                            if game.pressed.get(pygame.K_RIGHT) and game.vaisseau.rect.x + game.vaisseau.rect.width < fenetrebien.get_width():
+                                game.vaisseau.move_right()
+                            elif game.pressed.get(pygame.K_LEFT) and game.vaisseau.rect.x > 0:
+                                game.vaisseau.move_left()
+                            # mettre à jour l'ecran
+                            pygame.display.flip()
+                            
+                            # Boucle pour les évènements et pour fermer la page
+                            for event in pygame.event.get():
+                                #evenement= fermeture de la fenetre
+                                if event.type == pygame.QUIT:
+                                    running= False
+                                    pygame.quit()
+                                    
+                                if event.type == pygame.MOUSEBUTTONDOWN:
+                                    if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                        pygame.display.update()
+                                        bien=False
+                                        running= False
+                                        
+                                #detecter si on lache une touche du clavier
+                                elif event.type == pygame.KEYDOWN:
+                                    game.pressed[event.key]= True
+                                    #detecter si la touche espace est enclenchée pour lancer un projectile
+                                    if event.key == pygame.K_SPACE:
+                                        game.vaisseau.lancer_projectile()
+                                        son.play()
+                        
+                                elif event.type == pygame.KEYUP:
+                                    game.pressed[event.key]= False   
+                                
+                                
+                        
 
                 # Variation de l'age si le bouton + une année est cliqué
                 if 525 <= mouse[0] <= 525+200 and 510 <= mouse[1] <= 510+100:
