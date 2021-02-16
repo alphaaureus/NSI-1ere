@@ -108,12 +108,12 @@ def principal(sexe):
     # Variable pour contenir le choix de la spécialité et le choix du métier
     choix=""
     choixmetier=""
-    
+
     # Listes vides pour contenir le choix du domicile, du transport et des animaux de compagnie
     choixdomicile=[]
     choixtransport=[]
     choixanimal=[]
-    
+
 
     # Couleur blanche du texte
     color = (255,255,255)
@@ -482,12 +482,12 @@ def principal(sexe):
                         pygame.draw.rect(fenetreprop,color_red,[80,190,326,550])
                         pygame.draw.rect(fenetreprop,color_red,[427,190,326,550])
                         pygame.draw.rect(fenetreprop,color_red,[774,190,326,550])
-                        
+
                         # Affichage des noms des catégories
                         fenetreprop.blit(domicile , (160,200))
                         fenetreprop.blit(transport , (500,200))
                         fenetreprop.blit(animal , (860,200))
-                        
+
                         # Contenu des catégories
                         if choixdomicile==[]:
                             fenetreprop.blit(aucunpart1 , (95,400))
@@ -516,39 +516,43 @@ def principal(sexe):
                     bien=True
                     # Boucle pour la page bien-être
                     while bien:
+                        # création de la fenêtre
                         pygame.display.update()
                         fenetrebien = pygame.display.set_mode((width,height))
-                        
-                        # importer et charger l'arriere plan
-                        background = pygame.image.load('image1.jpg')
+
+                        # importer, changer la taille et charger l'arriere plan
+                        back = pygame.image.load('image1.jpg')
+                        background =pygame.transform.scale(back,(width,height))
+
                         # charger le game
                         game = Game()
-                        
+
+                        # variable pour faire tourner le jeu
                         running= True
-                        
+
                         #boucle tant que cette condition est vrai
-                        while running: 
-                            mouse = pygame.mouse.get_pos() 
+                        while running:
+                            mouse = pygame.mouse.get_pos()
                             # appliquer l'arriere plan
                             fenetrebien.blit(background, (0, 0))
                             #appliquer l'image du vaisseau
                             fenetrebien.blit(game.vaisseau.image,game.vaisseau.rect)
-                            
+
                             # Bouton retour à la page principale
                             if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
                                 pygame.draw.rect(fenetrebien,color_light,[50,50,125,50])
                             else:
                                 pygame.draw.rect(fenetrebien,color_dark,[50,50,125,50])
-                                
+
                             fenetrebien.blit(retour , (60,50))
-                        
+
                             #recuperer les projectiles du vaisseau
                             for projectile in game.vaisseau.x_projectiles:
                                 projectile.move()
-                        
+
                             # appliquer l'image du projectiles
                             game.vaisseau.x_projectiles.draw(fenetrebien)
-                        
+
                             #ajouter un son pour le projectile
                             son = pygame.mixer.Sound('laser.mp3')
                             # verifier si le joueur veut aller a gauche ou a droite
@@ -558,20 +562,20 @@ def principal(sexe):
                                 game.vaisseau.move_left()
                             # mettre à jour l'ecran
                             pygame.display.flip()
-                            
+
                             # Boucle pour les évènements et pour fermer la page
                             for event in pygame.event.get():
                                 #evenement= fermeture de la fenetre
                                 if event.type == pygame.QUIT:
                                     running= False
                                     pygame.quit()
-                                    
+
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
                                         pygame.display.update()
                                         bien=False
                                         running= False
-                                        
+
                                 #detecter si on lache une touche du clavier
                                 elif event.type == pygame.KEYDOWN:
                                     game.pressed[event.key]= True
@@ -579,12 +583,12 @@ def principal(sexe):
                                     if event.key == pygame.K_SPACE:
                                         game.vaisseau.lancer_projectile()
                                         son.play()
-                        
+
                                 elif event.type == pygame.KEYUP:
-                                    game.pressed[event.key]= False   
-                                
-                                
-                        
+                                    game.pressed[event.key]= False
+
+
+
 
                 # Variation de l'age si le bouton + une année est cliqué
                 if 525 <= mouse[0] <= 525+200 and 510 <= mouse[1] <= 510+100:
@@ -608,7 +612,7 @@ def principal(sexe):
                         elif variableage == 24 and choixmetier != "":
                             variableage = variableage+1
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
-                        
+
 
                     # Si la personne est arrivée à 100 ans, le jeu se termine
                     else:
