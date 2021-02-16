@@ -47,7 +47,7 @@ root.geometry("1200x800")
 label = Label(root, text="Trouves le bon nombre compris entre 1 et 99.")
 label.pack()
 
-# User input box.
+# Case pour écrire
 entry_window = Entry(root, width=100, borderwidth=8)
 entry_window.pack()
 # Le bouton pour proposer une réponse
@@ -57,7 +57,7 @@ btn_check.pack()
 btn_quit = Button(root, text="Quitter", command=root.destroy)
 btn_quit.pack()
 
-# Creating a text variable so we can update it as the game progresses.
+# Affichage du début
 text = StringVar()
 text.set("Tu as 10 tentatives. Bonne chance!!!")
 guess_tentative = Label(root, textvariable=text)
