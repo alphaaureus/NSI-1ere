@@ -2,6 +2,7 @@
 import pygame
 import pygame_menu
 import random
+from random import randint
 from pygame.locals import *
 from game import Game
 from player import Vaisseau
@@ -58,6 +59,9 @@ mytheme.widget_font_color=(0,0,0)
 
 # Variable pour le sexe choisis
 sexe = 0
+
+# Variable du salaire (aléatoire pour le moment)
+salaire = randint(1200, 3500)
 
 #Listes pour la page enseignement
 listematernelle=["Ecole maternelle Béré","Ecole maternelle Le Coudray","Ecole maternelle Henri Bergson","Ecole maternelle Jules Ferry","Ecole maternelle Claude Monet","Ecole maternelle Prince Bois","Ecole maternelle Le Bourgeau","Ecole maternelle du Massif","Ecole maternelle Molière","Ecole maternelle du Centre"]
@@ -634,7 +638,12 @@ def principal(sexe):
                 if 525 <= mouse[0] <= 525+200 and 510 <= mouse[1] <= 510+100:
                     # Le joueur peut avancer d'un an s'il à moins de 100 ans
                     if variableage < 100:
-                        # Sinon si tout est bon, la variable variableage s'incrémente de 1 et le texte de l'age est rafraichît
+                        # Ajout du salaire annuel après avoir un métier
+                        if variableage > 24:
+                            variableargent = variableargent + (salaire*12)
+                            argent = bigfont.render(str(variableargent)+"  "+'€', True , color)
+                            fenetre.blit(argent , (865,125))
+                        # Si tout est bon, la variable variableage s'incrémente de 1 et le texte de l'age est rafraichît
                         if variableage != 19 and variableage != 24:
                             variableage = variableage+1
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
@@ -648,10 +657,14 @@ def principal(sexe):
                         # Il ne peut pas avancer d'un an s'il n'a pas choisi de métier à 24 ans
                         elif variableage == 24 and choixmetier == "":
                             print("erreur")
-                        # Si un métier est choisi il peut avancer
+                        # Si un métier est choisi il peut avancer et recevra son premier salaire
                         elif variableage == 24 and choixmetier != "":
                             variableage = variableage+1
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
+                            variableargent = variableargent + (salaire*12)
+                            argent = bigfont.render(str(variableargent)+"  "+'€', True , color)
+                            fenetre.blit(argent , (865,125))
+
 
                     # Si la personne est arrivée à 100 ans, le jeu se termine
                     else:
