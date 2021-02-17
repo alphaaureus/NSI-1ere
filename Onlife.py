@@ -11,6 +11,9 @@ from projectile import Projectile
 # Initialisation de pygame
 pygame.init()
 
+
+## Mise en place de la fenêtre, des listes, des images, des couleurs et une variable
+
 #Création de la fenêtre
 width = 1200
 height = 800
@@ -68,6 +71,8 @@ listetransport=[]
 listeanimal=[]
 
 
+## Fonction menu
+
 # Code pour faire tourner la fonction menu pour choisir le sexe
 def sexe():
     pygame.init()
@@ -80,9 +85,14 @@ def sexe():
     return sexe
 
 
+## Fonction option
+
 #Fonction option à remplir
 def option_the_game():
     return option_the_game
+
+
+## Fonction du sexe
 
 # Fonction pour faire tourner la fonction principale du jeu en tant que femme
 def principal_femme():
@@ -92,13 +102,15 @@ def principal_femme():
 def principal_homme():
     principal(2)
 
-#Boucle principale pour le jeu
+
+## Fonction principale: au début - spécifications et mise en place d'autres couleurs, de variables et création des textes
+
 def principal(sexe):
     #Variables de l'age et de l'argent
     variableage = 0
     variableargent = 0
 
-    #Variable pour les differentes pages et boucles du jeu
+    #Variable pour les différentes pages et boucles du jeu
     fin = False
     edu=False
     prop=False
@@ -113,7 +125,6 @@ def principal(sexe):
     choixdomicile=[]
     choixtransport=[]
     choixanimal=[]
-
 
     # Couleur blanche du texte
     color = (255,255,255)
@@ -172,10 +183,11 @@ def principal(sexe):
     domicile = smallfont.render('Domicile:' , True , color)
     transport = smallfont.render('Transport:' , True , color)
     animal = smallfont.render('Animaux:' , True , color)
-    aucunpart1 = smallfont.render("Vous n'avez aucun" , True , color)
-    aucunpartdomicile = smallfont.render('domicile' , True , color)
-    aucunparttransport = smallfont.render('transport' , True , color)
-    aucunpartanimal = smallfont.render('animal' , True , color)
+    aucun = smallfont.render("Vous n'avez aucun" , True , color)
+    domicile1 = smallfont.render('domicile' , True , color)
+    transport1 = smallfont.render('transport' , True , color)
+    animal1 = smallfont.render('animal' , True , color)
+    acheter = smallfont.render('Acheter un' , True , color)
 
     # Texte de la page bien-être
     bienetre = smallfont.render('Bien-être' , True , color)
@@ -186,7 +198,9 @@ def principal(sexe):
     elif sexe == 2:
         persohomme=random.choice(imageshommes)
 
-    #Boucle infinie qui fait tourner le jeu
+
+## Boucle infinie qui fait tourner le jeu
+
     while not fin:
         # Mise en place de l'affichage de la fenêtre principale
         fenetre.fill(background_colour)
@@ -200,7 +214,7 @@ def principal(sexe):
         # Détection de la position de la souris
         mouse = pygame.mouse.get_pos()
 
-
+        # Détection d'événements
         for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
             if event.type == QUIT:     #Si un de ces événements est de type QUIT
                 fin = True      #On arrête la boucle
@@ -208,6 +222,9 @@ def principal(sexe):
 
             # Vérifie si la souris est cliquée
             if event.type == pygame.MOUSEBUTTONDOWN:
+
+
+## Page éducation
 
                 # Ouverture page éducation
                 if 900 <= mouse[0] <= 900+200 and 300 <= mouse[1] <= 300+50:
@@ -454,6 +471,8 @@ def principal(sexe):
                             fenetreedu.blit(nomdumetier , (100,200))
 
 
+## Page propriété
+
                 # Ouverture de la page propriété
                 if 900 <= mouse[0] <= 900+200 and 400 <= mouse[1] <= 400+50:
                     # Variable prop pour ouvrir et fermer la page propriété
@@ -490,14 +509,34 @@ def principal(sexe):
 
                         # Contenu des catégories
                         if choixdomicile==[]:
-                            fenetreprop.blit(aucunpart1 , (95,400))
-                            fenetreprop.blit(aucunpartdomicile , (170,450))
+                            fenetreprop.blit(aucun , (95,400))
+                            fenetreprop.blit(domicile1 , (170,450))
+                            if 100 <= mouse[0] <= 100+286 and 600 <= mouse[1] <= 600+100:
+                                pygame.draw.rect(fenetreprop,color_dred,[100,600,286,100])
+                            else:
+                                pygame.draw.rect(fenetreprop,color_bred,[100,600,286,100])
+                            fenetreprop.blit(acheter , (150,600))
+                            fenetreprop.blit(domicile1 , (170,650))
+
                         if choixtransport==[]:
-                            fenetreprop.blit(aucunpart1 , (445,400))
-                            fenetreprop.blit(aucunparttransport , (510,450))
+                            fenetreprop.blit(aucun , (445,400))
+                            fenetreprop.blit(transport1 , (510,450))
+                            if 447 <= mouse[0] <= 447+286 and 600 <= mouse[1] <= 600+100:
+                                pygame.draw.rect(fenetreprop,color_dred,[447,600,286,100])
+                            else:
+                                pygame.draw.rect(fenetreprop,color_bred,[447,600,286,100])
+                            fenetreprop.blit(acheter , (500,600))
+                            fenetreprop.blit(transport1 , (510,650))
+
                         if choixanimal==[]:
-                            fenetreprop.blit(aucunpart1 , (790,400))
-                            fenetreprop.blit(aucunpartanimal , (880,450))
+                            fenetreprop.blit(aucun , (790,400))
+                            fenetreprop.blit(animal1 , (880,450))
+                            if 794 <= mouse[0] <= 794+286 and 600 <= mouse[1] <= 600+100:
+                                pygame.draw.rect(fenetreprop,color_dred,[794,600,286,100])
+                            else:
+                                pygame.draw.rect(fenetreprop,color_bred,[794,600,286,100])
+                            fenetreprop.blit(acheter , (840,600))
+                            fenetreprop.blit(animal1 , (880,650))
 
                         # Boucle pour les évènements et pour fermer la page
                         for event in pygame.event.get():
@@ -509,6 +548,8 @@ def principal(sexe):
                                 if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
                                     pygame.display.update()
                                     prop=False
+
+## Page bien-être (mini-jeu)
 
                 # Ouverture de la page bien-être
                 if 900 <= mouse[0] <= 900+200 and 500 <= mouse[1] <= 500+50:
@@ -587,8 +628,7 @@ def principal(sexe):
                                 elif event.type == pygame.KEYUP:
                                     game.pressed[event.key]= False
 
-
-
+## Bouton age
 
                 # Variation de l'age si le bouton + une année est cliqué
                 if 525 <= mouse[0] <= 525+200 and 510 <= mouse[1] <= 510+100:
@@ -613,7 +653,6 @@ def principal(sexe):
                             variableage = variableage+1
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
 
-
                     # Si la personne est arrivée à 100 ans, le jeu se termine
                     else:
                         terminer= True
@@ -634,12 +673,15 @@ def principal(sexe):
                                 fin = True
                                 pygame.display.quit()
 
+## Bouton retour
+
                 # Bouton retour au menu du départ
                 if 900 <= mouse[0] <= 900+200 and 600 <= mouse[1] <= 600+50:
                     sexe=0
                     depart()
 
-        # Mise en place des rectangles des boutons qui changent de couleurs si la souris est au-dessus
+## Mise en place des rectangles des boutons de le page pricipale qui changent de couleurs si la souris est au-dessus
+
         # Bouton éducation
         if 900 <= mouse[0] <= 900+200 and 300 <= mouse[1] <= 300+50:
             pygame.draw.rect(fenetre,color_light,[900,300,200,50])
@@ -670,6 +712,8 @@ def principal(sexe):
         else:
             pygame.draw.rect(fenetre,color_dark,[525,510,200,100])
 
+## Affichage des éléments de la page principale
+
         # Affichage de l'identité sur un rectangle par superposition
         pygame.draw.rect(fenetre,color_dark,[70,100,365,100])
         if sexe == 1:
@@ -695,6 +739,8 @@ def principal(sexe):
         pygame.display.flip()
 
 
+## Fonction du début du jeu (premier menu)
+
 # Code pour le menu du départ en utilisant la bibliothèque pygame_menu
 def depart():
     menu = pygame_menu.Menu(800, 1200, 'ONLIFE',theme=mytheme)
@@ -705,15 +751,18 @@ def depart():
     menu.mainloop(fenetre)
     return depart()
 
+
+## Faire tourner le jeu
+
 # Commencer et faire tourner le jeu
 depart()
 
 
 # Code pour pouvoir fermer la page et pour la rafraichir
-continuer = 1
+continuer = True
 while continuer:
     for event in pygame.event.get():    #Attente des événements
         if event.type == QUIT:
-            continuer = 0
+            continuer = False
     #Rafraichissement
     pygame.display.flip()
