@@ -4,24 +4,14 @@
 Application du type "jeu de role" ou l'utilisateur se met dans la peau d'un personnage. (similairement a l'application "bitlife")
 <br>Trello pour s'organiser: https://trello.com/b/nQkLOTQe
 
-### Partage des tâches par élèves
-
-Clara------ Aide pour rechercher comment coder les éléments et transmets les informations dans le readme 
-
-Aurélie---- Page principal et les sous-parties, relecture du dm
-
-Haroun----- Menu principal avec les différents boutons (Jouer, options, et quitter), mini jeu (trouver le bon nombre), et travail sur la conception visuel global du jeu.
-
-Rayane----- Menu de la deuxième page avec les boutons(Homme, Femme et retour), transitions entre les différentes pages, et mini-jeu (vaisseau qui tire sur des astéroides).
-
 
 # Sommaire
 **Information de base**
   - Membres
+  - Partage des tâches
   - 16 Semaines
   - Description du jeu
   - Contrainte
-  - Partage des tâches
   
 **Professeur**
   - Etapes à suivre
@@ -42,6 +32,16 @@ Rayane----- Menu de la deuxième page avec les boutons(Homme, Femme et retour), 
 <br>Haroun Habidi
 <br>Rayane Dahmoul
 
+
+### Partage des tâches par élèves
+
+Clara------ Aide pour rechercher comment coder les éléments et transmets les informations dans le readme 
+
+Aurélie---- Page principal et les sous-parties, écriture et relecture du readme
+
+Haroun----- Menu principal avec les différents boutons (Jouer, options, et quitter), mini jeu (trouver le bon nombre), et travail sur la conception visuel global du jeu.
+
+Rayane----- Menu de la deuxième page avec les boutons(Homme, Femme et retour), transitions entre les différentes pages, et mini-jeu (vaisseau qui tire sur des astéroides).
 
 
 ### 16 Semaines:
