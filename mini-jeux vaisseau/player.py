@@ -31,7 +31,7 @@ class Boss(pygame.sprite.Sprite):
         self.max_health = 1000
         self.attack = 5
         self.velocity = 0
-        self.image = pygame.image.load("vaisseau_boss.png")
+        self.image = pygame.image.load("vaisseau_boss2.png")
         self.rect = self.image.get_rect()
         self.rect.x= -210
         self.rect.y= -20
