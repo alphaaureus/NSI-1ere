@@ -20,13 +20,17 @@ while running:
     ecran.blit(background, (0, 0))
     #appliquer l'image du vaisseau
     ecran.blit(game.vaisseau.image,game.vaisseau.rect)
-
     #recuperer les projectiles du vaisseau
     for projectile in game.vaisseau.x_projectiles:
         projectile.move()
-
     # appliquer l'image du projectiles
     game.vaisseau.x_projectiles.draw(ecran)
+
+    #appliquer l'image du boss
+    ecran.blit(game.boss.image, game.boss.rect)
+
+
+
 
     #ajouter un son pour le projectile
     son = pygame.mixer.Sound('laser.mp3')
@@ -54,6 +58,8 @@ while running:
 
         elif event.type == pygame.KEYUP:
             game.pressed[event.key]= False
+
+
 
 
 
