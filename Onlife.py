@@ -7,6 +7,9 @@ from pygame.locals import *
 from game import Game
 from player import Vaisseau
 from projectile import Projectile
+import tkinter
+from tkinter import messagebox
+
 
 
 # Initialisation de pygame
@@ -515,32 +518,32 @@ def principal(sexe):
                         if choixdomicile==[]:
                             fenetreprop.blit(aucun , (95,400))
                             fenetreprop.blit(domicile1 , (170,450))
-                            if 100 <= mouse[0] <= 100+286 and 600 <= mouse[1] <= 600+100:
-                                pygame.draw.rect(fenetreprop,color_dred,[100,600,286,100])
-                            else:
-                                pygame.draw.rect(fenetreprop,color_bred,[100,600,286,100])
-                            fenetreprop.blit(acheter , (150,600))
-                            fenetreprop.blit(domicile1 , (170,650))
+                        if 100 <= mouse[0] <= 100+286 and 600 <= mouse[1] <= 600+100:
+                            pygame.draw.rect(fenetreprop,color_dred,[100,600,286,100])
+                        else:
+                            pygame.draw.rect(fenetreprop,color_bred,[100,600,286,100])
+                        fenetreprop.blit(acheter , (150,600))
+                        fenetreprop.blit(domicile1 , (170,650))
 
                         if choixtransport==[]:
                             fenetreprop.blit(aucun , (445,400))
                             fenetreprop.blit(transport1 , (510,450))
-                            if 447 <= mouse[0] <= 447+286 and 600 <= mouse[1] <= 600+100:
-                                pygame.draw.rect(fenetreprop,color_dred,[447,600,286,100])
-                            else:
-                                pygame.draw.rect(fenetreprop,color_bred,[447,600,286,100])
-                            fenetreprop.blit(acheter , (500,600))
-                            fenetreprop.blit(transport1 , (510,650))
+                        if 447 <= mouse[0] <= 447+286 and 600 <= mouse[1] <= 600+100:
+                            pygame.draw.rect(fenetreprop,color_dred,[447,600,286,100])
+                        else:
+                            pygame.draw.rect(fenetreprop,color_bred,[447,600,286,100])
+                        fenetreprop.blit(acheter , (500,600))
+                        fenetreprop.blit(transport1 , (510,650))
 
                         if choixanimal==[]:
                             fenetreprop.blit(aucun , (790,400))
                             fenetreprop.blit(animal1 , (880,450))
-                            if 794 <= mouse[0] <= 794+286 and 600 <= mouse[1] <= 600+100:
-                                pygame.draw.rect(fenetreprop,color_dred,[794,600,286,100])
-                            else:
-                                pygame.draw.rect(fenetreprop,color_bred,[794,600,286,100])
-                            fenetreprop.blit(acheter , (840,600))
-                            fenetreprop.blit(animal1 , (880,650))
+                        if 794 <= mouse[0] <= 794+286 and 600 <= mouse[1] <= 600+100:
+                            pygame.draw.rect(fenetreprop,color_dred,[794,600,286,100])
+                        else:
+                            pygame.draw.rect(fenetreprop,color_bred,[794,600,286,100])
+                        fenetreprop.blit(acheter , (840,600))
+                        fenetreprop.blit(animal1 , (880,650))
 
                         # Boucle pour les évènements et pour fermer la page
                         for event in pygame.event.get():
@@ -552,6 +555,91 @@ def principal(sexe):
                                 if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
                                     pygame.display.update()
                                     prop=False
+
+                                if 100 <= mouse[0] <= 100+286 and 600 <= mouse[1] <= 600+100: #domicile
+                                    dom=True
+                                    while dom:
+                                        pygame.display.update()
+                                        fenetredom = pygame.display.set_mode((width,height))
+                                        fenetredom.fill(background_colour)
+                                        mouse = pygame.mouse.get_pos()
+
+                                        # Bouton retour à la page propriété
+                                        if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                            pygame.draw.rect(fenetredom,color_light,[50,50,125,50])
+                                        else:
+                                            pygame.draw.rect(fenetredom,color_dark,[50,50,125,50])
+                                        fenetredom.blit(retour , (60,50))
+
+                                        # Boucle pour les évènements
+                                        for event in pygame.event.get():
+                                            if event.type == pygame.MOUSEBUTTONDOWN:
+                                                if event.type == QUIT:     #Si un de ces événements est de type QUIT
+                                                    fin = True
+                                                    prop = False     #On arrête la boucle
+                                                    pygame.display.quit()
+
+                                                if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                                    pygame.display.update()
+                                                    dom=False
+
+
+                                if 447 <= mouse[0] <= 447+286 and 600 <= mouse[1] <= 600+100: #transport
+                                    tra=True
+                                    while tra:
+                                        pygame.display.update()
+                                        fenetretra = pygame.display.set_mode((width,height))
+                                        fenetretra.fill(background_colour)
+                                        mouse = pygame.mouse.get_pos()
+
+                                        # Bouton retour à la page propriété
+                                        if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                            pygame.draw.rect(fenetretra,color_light,[50,50,125,50])
+                                        else:
+                                            pygame.draw.rect(fenetretra,color_dark,[50,50,125,50])
+                                        fenetretra.blit(retour , (60,50))
+
+                                        # Boucle pour les évènements
+                                        for event in pygame.event.get():
+                                            if event.type == pygame.MOUSEBUTTONDOWN:
+                                                if event.type == QUIT:     #Si un de ces événements est de type QUIT
+                                                    fin = True
+                                                    prop = False     #On arrête la boucle
+                                                    pygame.display.quit()
+
+                                                if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                                    pygame.display.update()
+                                                    tra=False
+
+                                if 794 <= mouse[0] <= 794+286 and 600 <= mouse[1] <= 600+100: #animal
+                                    ani=True
+                                    while ani:
+                                        pygame.display.update()
+                                        fenetreani = pygame.display.set_mode((width,height))
+                                        fenetreani.fill(background_colour)
+                                        mouse = pygame.mouse.get_pos()
+
+                                        # Bouton retour à la page propriété
+                                        if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                            pygame.draw.rect(fenetreani,color_light,[50,50,125,50])
+                                        else:
+                                            pygame.draw.rect(fenetreani,color_dark,[50,50,125,50])
+                                        fenetreani.blit(retour , (60,50))
+
+                                        # Boucle pour les évènements
+                                        for event in pygame.event.get():
+                                            if event.type == pygame.MOUSEBUTTONDOWN:
+                                                if event.type == QUIT:     #Si un de ces événements est de type QUIT
+                                                    fin = True
+                                                    prop = False     #On arrête la boucle
+                                                    pygame.display.quit()
+
+                                                if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
+                                                    pygame.display.update()
+                                                    ani=False
+
+
+
 
 ## Page bien-être (mini-jeu)
 
@@ -649,14 +737,20 @@ def principal(sexe):
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
                         # Il ne peut pas avancer d'un an s'il n'a pas choisi de spécialité à 19 ans
                         elif variableage == 19 and choix == "":
-                            print("erreur")
+                            # hide main window
+                            root = tkinter.Tk()
+                            root.withdraw()
+                            tkinter.messagebox.showinfo("Information","Il faut choisir une spécialité!")
                         # Si une spécialité est choisie il peut avancer
                         elif variableage == 19 and choix != "":
                             variableage = variableage+1
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
                         # Il ne peut pas avancer d'un an s'il n'a pas choisi de métier à 24 ans
                         elif variableage == 24 and choixmetier == "":
-                            print("erreur")
+                            # hide main window
+                            root = tkinter.Tk()
+                            root.withdraw()
+                            tkinter.messagebox.showinfo("Information","Il faut choisir un métier!")
                         # Si un métier est choisi il peut avancer et recevra son premier salaire
                         elif variableage == 24 and choixmetier != "":
                             variableage = variableage+1
