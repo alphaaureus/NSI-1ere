@@ -62,7 +62,7 @@ mytheme.widget_font_color=(0,0,0)
 sexe = 0
 
 # Variable du salaire (aléatoire pour le moment)
-salaire = randint(1200, 3500)
+salaire = 0
 
 #Listes pour la page enseignement
 listematernelle=["Ecole maternelle Béré","Ecole maternelle Le Coudray","Ecole maternelle Henri Bergson","Ecole maternelle Jules Ferry","Ecole maternelle Claude Monet","Ecole maternelle Prince Bois","Ecole maternelle Le Bourgeau","Ecole maternelle du Massif","Ecole maternelle Molière","Ecole maternelle du Centre"]
@@ -71,7 +71,7 @@ listecollege=["Collège Chaptal","Collège Plaisance","Collège Jean Giono","Col
 listelycee=["Lycée Jean Rostand","Lycée Henri Vincenot","Lycée Camille Claudel","Lycée Pasteur","Lycée Gustave Eiffel","Lycée Voltaire","Lycée Parc des Loges","Lycée Martin Luther King","Lycée Honoré Romane","Lycée Jean Monnet"]
 listeuniversite=["Commerce","Ingénieur","Lettres","Arts","Politique","Sc.Sociales","Droit","Architecture","Médecine"]
 
-dicometiers=[["Commerce1","Salaire"],["Commerce2","Salaire"],["Commerce3","Salaire"],["Commerce4","Salaire"],["Commerce5","Salaire"],["Ingénieur1","Salaire"],["Ingénieur2","Salaire"],["Ingénieur3","Salaire"],["Ingénieur4","Salaire"],["Ingénieur5","Salaire"],["Lettres1","Salaire"],["Lettres2","Salaire"],["Lettres3","Salaire"],["Lettres4","Salaire"],["Lettres5","Salaire"],["Arts1","Salaire"],["Arts2","Salaire"],["Arts3","Salaire"],["Arts4","Salaire"],["Arts5","Salaire"],["Politique1","Salaire"],["Politique2","Salaire"],["Politique3","Salaire"],["Politique4","Salaire"],["Politique5","Salaire"],["Sc.Sociales1","Salaire"],["Sc.Sociales2","Salaire"],["Sc.Sociales3","Salaire"],["Sc.Sociales4","Salaire"],["Sc.Sociales5","Salaire"],["Droit1","Salaire"],["Droit2","Salaire"],["Droit3","Salaire"],["Droit4","Salaire"],["Droit5","Salaire"],["Architecture1","Salaire"],["Architecture2","Salaire"],["Architecture3","Salaire"],["Architecture4","Salaire"],["Architecture5","Salaire"],["Médecine1","Salaire"],["Médecine2","Salaire"],["Médecine3","Salaire"],["Médecine4","Salaire"],["Médecine5","Salaire"]]
+dicometiers=[["Caissier",1750],["Commercial",4108],["Acheteur",3500],["Ag.Immobilier",3500],["Ag.Marketing",5083],["Aéronautique",5100],["Chimie",5500],["Environnement",2000],["Génie Civil",4750],["Mécanique",2300],["Ecrivain",2767],["Libraire",2000],["Traducteur",2500],["Editeur",5000],["Enseignant",3500],["Illustrateur",3986],["Photographe",1430],["Sculpteur",1800],["Peintre",4400],["Galeriste",2240],["Ministre",14900],["Politologue",1430],["Diplomate",3700],["Maire",8454],["Parlementaire",8757],["Démographe",3600],["Ethnologue",2500],["Historien",1500],["Sociologue",2160],["Assistant social",1700],["Avocat",2600],["Juge",4447],["Notaire",8700],["Huissier",8000],["Greffier",2580],["Architecte",3300],["Urbaniste",2800],["Décorateur",4000],["Installateur",2000],["Coloriste",1700],["Médecin",10684],["Pharmacien",3850],["Psychologie",3200],["Chirurgien",11500],["Infirmier",1800]]
 
 listedomicile=[["Studio1",98],["Studio2",127],["Studio3",75],["Studio4",82],["Studio5",250],["Appartement1",249],["Appartement2",450],["Appartement3",330],["Appartement4",279],["Appartement5",427],["Maison1",985],["Maison2",824],["Maison3",675],["Maison4",310],["Maison5",639],["Villa1",1690],["Villa2",2780],["Villa3",3150],["Villa4",1330],["Villa5",1490]]
 listetransport=[["Vélo 1",1.75],["Vélo 2",4.6],["Moto 1",5.9],["Moto 2",10.3],["Auto Berline 1",15.5],["Auto Berline 2",22.3],["Auto Break 1",16.6],["Auto Break 2",19.2],["Monospace 1",23.6],["Monospace 2",28.1],["Citadines 1",16.2],["Citadines 2",22.9],["4x4 1",29],["4x4 2",31.8],["Limousine 1",47],["Limousine 2",72],["Bateau 1",159],["Bateau 2",385],["Jet Privé 1",2950],["Jet Privé 2",5000]]
@@ -157,8 +157,6 @@ def option_the_game():
         fenetreoption.blit(ligne14, (50,660))
         fenetreoption.blit(ligne15, (50,690))
 
-
-
         # Bouton retour à la page principale
         if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
             pygame.draw.rect(fenetreoption,color_light,[50,50,125,50])
@@ -179,7 +177,6 @@ def option_the_game():
                     pygame.display.update()
                     optionfin=True
                     depart()
-
 
 
 ## Fonction du sexe
@@ -322,7 +319,8 @@ def principal(sexe):
                 if 900 <= mouse[0] <= 900+200 and 300 <= mouse[1] <= 300+50:
                     # Variable edu pour ouvrir et fermer la page éducation
                     edu=True
-                    # Variables qui contiennent le nom des options en fonction de la spécialité et création des textes avec le nom du choix de spécialité et du choix de métier
+                    # Variables qui contiennent le nom des options en fonction de la spécialité
+                    # Création des textes avec le nom du choix de spécialité et du choix de métier
                     nomduchoix = smallfont.render(choix , True , color)
                     nomdumetier = smallfont.render(choixmetier , True , color)
                     option1 = ""
@@ -391,18 +389,23 @@ def principal(sexe):
                                     if 710 <= mouse[0] <= 710+30 and 262 <= mouse[1] <= 262+30:
                                         choixmetier = option01
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        salaire = option001
                                     if 710 <= mouse[0] <= 710+30 and 362 <= mouse[1] <= 362+30:
                                         choixmetier = option02
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        salaire = option002
                                     if 710 <= mouse[0] <= 710+30 and 462 <= mouse[1] <= 462+30:
                                         choixmetier = option03
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        salaire = option003
                                     if 710 <= mouse[0] <= 710+30 and 562 <= mouse[1] <= 562+30:
                                         choixmetier = option04
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        salaire = option004
                                     if 710 <= mouse[0] <= 710+30 and 662 <= mouse[1] <= 662+30:
                                         choixmetier = option05
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        salaire = option005
 
                         # Bouton retour à la page principale
                         if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
@@ -513,14 +516,19 @@ def principal(sexe):
                                     a=i*5
                                     option1 = smallfont.render(dicometiers[a][0] , True , color)
                                     option01 = dicometiers[a][0]
+                                    option001 = dicometiers[a][1]
                                     option2 = smallfont.render(dicometiers[a+1][0] , True , color)
                                     option02 = dicometiers[a+1][0]
+                                    option002 = dicometiers[a+1][1]
                                     option3 = smallfont.render(dicometiers[a+2][0] , True , color)
                                     option03 = dicometiers[a+2][0]
+                                    option003 = dicometiers[a+2][1]
                                     option4 = smallfont.render(dicometiers[a+3][0] , True , color)
                                     option04 = dicometiers[a+3][0]
+                                    option004 = dicometiers[a+3][1]
                                     option5 = smallfont.render(dicometiers[a+4][0] , True , color)
                                     option05 = dicometiers[a+4][0]
+                                    option005 = dicometiers[a+4][1]
 
                             # Affichage des textes des choix de métiers
                             fenetreedu.blit(option1 , (800,250))
