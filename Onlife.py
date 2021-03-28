@@ -47,6 +47,8 @@ homme5=pygame.image.load('Homme5.png').convert_alpha()
 imagesfemmes=[femme1,femme2,femme3,femme4]
 imageshommes=[homme1,homme2,homme3,homme4,homme5]
 
+interview=pygame.image.load('interview.png').convert_alpha()
+
 
 # Theme personalisé pour les menus
 mytheme = pygame_menu.themes.THEME_DARK.copy()
@@ -70,12 +72,10 @@ listeprimaire=["Ecole primaire Guillaume Apollinaire","Ecole primaire Michel Ser
 listecollege=["Collège Chaptal","Collège Plaisance","Collège Jean Giono","Collège les Fontainettes","Collège Victor Hugo","Collège des Trois Vallées","Collège la Sablière","Collège Antoine de Saint-Exupéry","Collège Claude Nicolas le Doux","Collège Les Franchises"]
 listelycee=["Lycée Jean Rostand","Lycée Henri Vincenot","Lycée Camille Claudel","Lycée Pasteur","Lycée Gustave Eiffel","Lycée Voltaire","Lycée Parc des Loges","Lycée Martin Luther King","Lycée Honoré Romane","Lycée Jean Monnet"]
 listeuniversite=["Commerce","Ingénieur","Lettres","Arts","Politique","Sc.Sociales","Droit","Architecture","Médecine"]
-
-dicometiers=[["Caissier",1750],["Commercial",4108],["Acheteur",3500],["Ag.Immobilier",3500],["Ag.Marketing",5083],["Aéronautique",5100],["Chimie",5500],["Environnement",2000],["Génie Civil",4750],["Mécanique",2300],["Ecrivain",2767],["Libraire",2000],["Traducteur",2500],["Editeur",5000],["Enseignant",3500],["Illustrateur",3986],["Photographe",1430],["Sculpteur",1800],["Peintre",4400],["Galeriste",2240],["Ministre",14900],["Politologue",1430],["Diplomate",3700],["Maire",8454],["Parlementaire",8757],["Démographe",3600],["Ethnologue",2500],["Historien",1500],["Sociologue",2160],["Assistant social",1700],["Avocat",2600],["Juge",4447],["Notaire",8700],["Huissier",8000],["Greffier",2580],["Architecte",3300],["Urbaniste",2800],["Décorateur",4000],["Installateur",2000],["Coloriste",1700],["Médecin",10684],["Pharmacien",3850],["Psychologie",3200],["Chirurgien",11500],["Infirmier",1800]]
-
-listedomicile=[["Studio1",98],["Studio2",127],["Studio3",75],["Studio4",82],["Studio5",250],["Appartement1",249],["Appartement2",450],["Appartement3",330],["Appartement4",279],["Appartement5",427],["Maison1",985],["Maison2",824],["Maison3",675],["Maison4",310],["Maison5",639],["Villa1",1690],["Villa2",2780],["Villa3",3150],["Villa4",1330],["Villa5",1490]]
-listetransport=[["Vélo 1",1.75],["Vélo 2",4.6],["Moto 1",5.9],["Moto 2",10.3],["Auto Berline 1",15.5],["Auto Berline 2",22.3],["Auto Break 1",16.6],["Auto Break 2",19.2],["Monospace 1",23.6],["Monospace 2",28.1],["Citadines 1",16.2],["Citadines 2",22.9],["4x4 1",29],["4x4 2",31.8],["Limousine 1",47],["Limousine 2",72],["Bateau 1",159],["Bateau 2",385],["Jet Privé 1",2950],["Jet Privé 2",5000]]
-listeanimal=[["Chien 1",1000],["Chien 2",1500],["Chat 1",1000],["Chat 2",1250],["Poisson 1",150],["Poisson 2",250],["Furet 1",2500],["Furet 2",3250],["Cheval 1",6000],["Cheval 2",9750],["Lapin 1",3500],["Lapin 2",4450],["Hamster 1",1700],["Hamster 2",2250],["Oiseau 1",5250],["Oiseau 2",8750],["Poule 1",200],["Poule 2",500],["Cochon 1",3750],["Cochon 2",6500]]
+dicometiers=[["Caissier",1750],["Commercial",4108],["Acheteur",3500],["Ag.Immobilier",3500],["Ag.Marketing",5083],["Aéronautique",5100],["Chimie",5500],["Environnement",2000],["Génie Civil",4750],["Mécanique",2300],["Ecrivain",2767],["Libraire",2000],["Traducteur",2500],["Editeur",5000],["Enseignant",3500],["Illustrateur",3986],["Photographe",1430],["Sculpteur",1800],["Peintre",4400],["Galeriste",2240],["Ministre",14900],["Politologue",1430],["Diplomate",3700],["Maire",8454],["Parlementaire",8757],["Démographe",3600],["Ethnologue",2500],["Historien",1500],["Sociologue",2160],["Assistant soc.",1700],["Avocat",2600],["Juge",4447],["Notaire",8700],["Huissier",8000],["Greffier",2580],["Architecte",3300],["Urbaniste",2800],["Décorateur",4000],["Installateur",2000],["Coloriste",1700],["Médecin",10684],["Pharmacien",3850],["Psychologie",3200],["Chirurgien",11500],["Infirmier",1800]]
+listedomicile=[["Studio - 1",98],["Studio - 2",127],["Studio - 3",75],["Studio - 4",82],["Studio - 5",250],["Appart - 1",249],["Appart - 2",450],["Appart - 3",330],["Appart - 4",279],["Appart - 5",427],["Maison - 1",985],["Maison - 2",824],["Maison - 3",675],["Maison - 4",310],["Maison - 5",639],["Villa - 1",1690],["Villa - 2",2780],["Villa - 3",3150],["Villa - 4",1330],["Villa - 5",1490]]
+listetransport=[["Vélo - 1",1.75],["Vélo - 2",4.6],["Moto - 1",5.9],["Moto - 2",10.3],["Berline - 1",15.5],["Berline - 2",22.3],["Break - 1",16.6],["Break - 2",19.2],["Monospace - 1",23.6],["Monospace - 2",28.1],["Citadines - 1",16.2],["Citadines - 2",22.9],["4x4 - 1",29],["4x4 - 2",31.8],["Limousine - 1",47],["Limousine - 2",72],["Bateau - 1",159],["Bateau - 2",385],["Jet Privé - 1",2950],["Jet Privé - 2",5000]]
+listeanimal=[["Chien - 1",1000],["Chien - 2",1500],["Chat - 1",1000],["Chat - 2",1250],["Poisson - 1",150],["Poisson - 2",250],["Furet - 1",2500],["Furet - 2",3250],["Cheval - 1",6000],["Cheval - 2",9750],["Lapin - 1",3500],["Lapin - 2",4450],["Hamster - 1",1700],["Hamster - 2",2250],["Oiseau - 1",5250],["Oiseau - 2",8750],["Poule - 1",200],["Poule - 2",500],["Cochon - 1",3750],["Cochon - 2",6500]]
 
 
 ## Fonction menu
@@ -225,6 +225,7 @@ def principal(sexe):
 
     # Police du texte avec deux tailles différentes
     smallfont = pygame.font.SysFont('comicsansms',35)
+    mediumfont = pygame.font.SysFont('comicsansms',40)
     bigfont = pygame.font.SysFont('comicsansms',50)
 
     # Variables pour stocker l'affichage du texte pour ensuite le blit
@@ -323,6 +324,7 @@ def principal(sexe):
                     # Création des textes avec le nom du choix de spécialité et du choix de métier
                     nomduchoix = smallfont.render(choix , True , color)
                     nomdumetier = smallfont.render(choixmetier , True , color)
+                    nomdumetier2 = mediumfont.render(choixmetier , True , color)
                     option1 = ""
                     option2 = ""
                     option3 = ""
@@ -389,22 +391,27 @@ def principal(sexe):
                                     if 710 <= mouse[0] <= 710+30 and 262 <= mouse[1] <= 262+30:
                                         choixmetier = option01
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        nomdumetier2 = mediumfont.render(choixmetier , True , color)
                                         salaire = option001
                                     if 710 <= mouse[0] <= 710+30 and 362 <= mouse[1] <= 362+30:
                                         choixmetier = option02
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        nomdumetier2 = mediumfont.render(choixmetier , True , color)
                                         salaire = option002
                                     if 710 <= mouse[0] <= 710+30 and 462 <= mouse[1] <= 462+30:
                                         choixmetier = option03
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        nomdumetier2 = mediumfont.render(choixmetier , True , color)
                                         salaire = option003
                                     if 710 <= mouse[0] <= 710+30 and 562 <= mouse[1] <= 562+30:
                                         choixmetier = option04
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        nomdumetier2 = mediumfont.render(choixmetier , True , color)
                                         salaire = option004
                                     if 710 <= mouse[0] <= 710+30 and 662 <= mouse[1] <= 662+30:
                                         choixmetier = option05
                                         nomdumetier = smallfont.render(choixmetier , True , color)
+                                        nomdumetier2 = mediumfont.render(choixmetier , True , color)
                                         salaire = option005
 
                         # Bouton retour à la page principale
@@ -538,33 +545,36 @@ def principal(sexe):
                             fenetreedu.blit(option5 , (800,650))
 
                             # Affichage du choix selectionné
-                            fenetreedu.blit(nomdumetier , (200,250))
+                            fenetreedu.blit(nomdumetier , (270,250))
+
+                            # Affichage de l'image de l'interview
+                            fenetreedu.blit(interview, (70,330))
 
                             # Mise en place des rectangles des boutons qui changent de couleurs si la souris est au-dessus
                             if 710 <= mouse[0] <= 710+30 and 262 <= mouse[1] <= 262+30:
-                                pygame.draw.rect(fenetreedu,color_bred,[710,262,30,30])
-                            else:
                                 pygame.draw.rect(fenetreedu,color_dred,[710,262,30,30])
+                            else:
+                                pygame.draw.rect(fenetreedu,color_bred,[710,262,30,30])
                             if 710 <= mouse[0] <= 710+30 and 362 <= mouse[1] <= 362+30:
-                                pygame.draw.rect(fenetreedu,color_bred,[710,362,30,30])
-                            else:
                                 pygame.draw.rect(fenetreedu,color_dred,[710,362,30,30])
+                            else:
+                                pygame.draw.rect(fenetreedu,color_bred,[710,362,30,30])
                             if 710 <= mouse[0] <= 710+30 and 462 <= mouse[1] <= 462+30:
-                                pygame.draw.rect(fenetreedu,color_bred,[710,462,30,30])
-                            else:
                                 pygame.draw.rect(fenetreedu,color_dred,[710,462,30,30])
+                            else:
+                                pygame.draw.rect(fenetreedu,color_bred,[710,462,30,30])
                             if 710 <= mouse[0] <= 710+30 and 562 <= mouse[1] <= 562+30:
-                                pygame.draw.rect(fenetreedu,color_bred,[710,562,30,30])
-                            else:
                                 pygame.draw.rect(fenetreedu,color_dred,[710,562,30,30])
-                            if 710 <= mouse[0] <= 710+30 and 662 <= mouse[1] <= 662+30:
-                                pygame.draw.rect(fenetreedu,color_bred,[710,662,30,30])
                             else:
+                                pygame.draw.rect(fenetreedu,color_bred,[710,562,30,30])
+                            if 710 <= mouse[0] <= 710+30 and 662 <= mouse[1] <= 662+30:
                                 pygame.draw.rect(fenetreedu,color_dred,[710,662,30,30])
+                            else:
+                                pygame.draw.rect(fenetreedu,color_bred,[710,662,30,30])
 
                         # Affichage du métier choisis après les études
                         if variableage > 24:
-                            fenetreedu.blit(nomdumetier , (100,200))
+                            fenetreedu.blit(nomdumetier2 , (150,250))
 
 
 ## Page propriété
@@ -1427,12 +1437,12 @@ def principal(sexe):
 ## Affichage des éléments de la page principale
 
         # Affichage de l'identité sur un rectangle par superposition
-        pygame.draw.rect(fenetre,color_dark,[70,100,365,100])
+        pygame.draw.rect(fenetre,color_dark,[80,100,365,100])
         if sexe == 1:
-            fenetre.blit(nomfemme , (75,105))
+            fenetre.blit(nomfemme , (85,105))
         elif sexe == 2:
-            fenetre.blit(nomhomme , (75,105))
-        fenetre.blit(age , (75,145))
+            fenetre.blit(nomhomme , (85,105))
+        fenetre.blit(age , (85,145))
 
         # Affichage du montant de l'argent
         pygame.draw.rect(fenetre,color_dark,[850,100,250,120])
