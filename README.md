@@ -1,8 +1,6 @@
 # NSI1ere - ONLIFE
-[![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 Application du type "jeu de role" ou l'utilisateur se met dans la peau d'un personnage. (similairement a l'application "bitlife")
-<br>Trello pour s'organiser: https://trello.com/b/nQkLOTQe
 
 
 # Sommaire
