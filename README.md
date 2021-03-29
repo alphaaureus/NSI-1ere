@@ -117,9 +117,10 @@ Nous avons des fonctions différentes reliées entre elles. Une d'elle définit 
 
 ##  Licenses
 This work is licensed under a
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
+
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 [cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
