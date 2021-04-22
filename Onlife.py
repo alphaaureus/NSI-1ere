@@ -314,7 +314,10 @@ def principal(sexe):
 
     # Texte de la page bien-être
     bienetre = smallfont.render('Bien-être' , True , color)
-
+    bienbig = bigfont.render('Bien-être' , True , color)
+    Basique = smallfont.render('Basique:' , True , color)
+    Médium = smallfont.render('Médium:' , True , color)
+    Luxe = smallfont.render('Luxe:' , True , color)
     # Image du personnage en fonction du sexe
     if sexe == 1:
         persofemme=random.choice(imagesfemmes)
@@ -1466,6 +1469,22 @@ def principal(sexe):
                         else:
                             pygame.draw.rect(fenetrebien,color_dark,[50,50,125,50])
                         fenetrebien.blit(retour , (60,50))
+
+                        # Titre de la page
+                        pygame.draw.rect(fenetrebien,color_dark,[230,25,900,100])
+                        fenetrebien.blit(bienbig , (580,40))
+
+                        # Eléments de la page
+                        # Rectangles pour le décor
+                        pygame.draw.rect(fenetrebien,color_dark,[50,165,1080,600])
+                        pygame.draw.rect(fenetrebien,color_red,[80,190,326,550])
+                        pygame.draw.rect(fenetrebien,color_red,[427,190,326,550])
+                        pygame.draw.rect(fenetrebien,color_red,[774,190,326,550])
+
+                        # Affichage des noms des catégories
+                        fenetrebien.blit(Basique , (160,200))
+                        fenetrebien.blit(Médium , (500,200))
+                        fenetrebien.blit(Luxe , (860,200))
 
                         # Boucle pour les évènements et pour fermer la page
                         for event in pygame.event.get():
