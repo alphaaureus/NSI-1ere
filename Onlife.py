@@ -827,26 +827,29 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
                             mouse = pygame.mouse.get_pos()
                             voyageprix=(int(contenuvoyage[pays][1+laclasse]))+(int(contenuvoyage[pays][4+laduree])*int(contenuvoyage[pays][11+lanourriture]))+(int(contenuvoyage[pays][13+lactivite]))+(int(contenuvoyage[pays][4+laduree])*int(contenuvoyage[pays][18+lestransport]))+(int(contenuvoyage[pays][4+laduree])*int(contenuvoyage[pays][21]))
                             afficherprixvoyage1 = bigfont2.render("Compte Rendu :" , True , color2) # Création du texte
+                            afficherprixvoyage01 = mediumfont.render("Destination : "+str(contenuvoyage[pays][0]) , True , color2) # Création du texte
                             afficherprixvoyage2 = mediumfont.render("Classe : " + optionsvoyage[1+laclasse], True , color2) # Création du texte
                             afficherprixvoyage3 = mediumfont.render("Durée : " + optionsvoyage[4+laduree], True , color2) # Création du texte
                             afficherprixvoyage4 = mediumfont.render("Nourriture : " + optionsvoyage[11+lanourriture], True , color2) # Création du texte
                             afficherprixvoyage5 = mediumfont.render("Activités : " + optionsvoyage[13+lactivite], True , color2) # Création du texte
                             afficherprixvoyage6 = mediumfont.render("Transport : " + optionsvoyage[18+lestransport], True , color2) # Création du texte
-                            afficherprixvoyage7 = mediumfont.render("Prix Hôtel : "+ str(contenuvoyage[pays][4+laduree])+ "x" + str(contenuvoyage[pays][21]), True , color2) # Création du texte
+                            afficherprixvoyage7 = smallfont.render("Prix Hôtel : "+ str(contenuvoyage[pays][4+laduree])+ "x" + str(contenuvoyage[pays][21]), True , color2) # Création du texte
                             afficherprixvoyage8 = smallfont.render("(nb de jours x prix par nuit)" , True , color2) # Création du texte
                             afficherprixvoyage9 = bigfont2.render("Prix :" , True , color2) # Création du texte
                             afficherprixvoyage10 = bigfont2.render(str(voyageprix) + "€" , True , color2) # Création du texte
                             fenetrevoyage.blit(traveling , (600,40))
+
                             fenetrevoyage.blit(afficherprixvoyage1 , (50,20))
-                            fenetrevoyage.blit(afficherprixvoyage2 , (50,100))
-                            fenetrevoyage.blit(afficherprixvoyage3 , (50,150))
-                            fenetrevoyage.blit(afficherprixvoyage4 , (50,200))
-                            fenetrevoyage.blit(afficherprixvoyage5 , (50,250))
-                            fenetrevoyage.blit(afficherprixvoyage6 , (50,300))
-                            fenetrevoyage.blit(afficherprixvoyage7 , (50,380))
-                            fenetrevoyage.blit(afficherprixvoyage8 , (50,420))
-                            fenetrevoyage.blit(afficherprixvoyage9 , (50,480))
-                            fenetrevoyage.blit(afficherprixvoyage10 , (50,550))
+                            fenetrevoyage.blit(afficherprixvoyage01 , (50,100))
+                            fenetrevoyage.blit(afficherprixvoyage2 , (50,150))
+                            fenetrevoyage.blit(afficherprixvoyage3 , (50,200))
+                            fenetrevoyage.blit(afficherprixvoyage4 , (50,250))
+                            fenetrevoyage.blit(afficherprixvoyage5 , (50,300))
+                            fenetrevoyage.blit(afficherprixvoyage6 , (50,350))
+                            fenetrevoyage.blit(afficherprixvoyage7 , (50,410))
+                            fenetrevoyage.blit(afficherprixvoyage8 , (50,445))
+                            fenetrevoyage.blit(afficherprixvoyage9 , (50,500))
+                            fenetrevoyage.blit(afficherprixvoyage10 , (50,570))
 
                             #Annuler ou valider
                             if 300 <= mouse[0] <= 200+300 and 660 <= mouse[1] <= 75+660:
