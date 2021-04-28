@@ -277,7 +277,6 @@ def guide_du_jeu():
             if event.type == QUIT:     # Si un de ces événements est de type QUIT
                 guide = False      # On arrête la boucle
                 pygame.display.quit() # On ferme le display
-
             # Vérifie si la souris est cliquée
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Bouton retour
@@ -352,7 +351,7 @@ def lemagasin(num,liste,choixliste,sexe,perso,nom,age,argent,salaire,nomlycee,sp
         if erreurmag == 1:
             fenetremag.blit(maximummag , (60,720))
 
-        # Boucle pour les évènements
+        # Détection d'événements
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Bouton retour
@@ -365,7 +364,6 @@ def lemagasin(num,liste,choixliste,sexe,perso,nom,age,argent,salaire,nomlycee,sp
                         principal(sexe,perso,nom,age,variableargent,salaire,nomlycee,spe,metier,domicile,choixmagasin,animaux)
                     elif num == 3: # Change le contenu des listes d'articles achetés en fonction de la catégorie d'article
                         principal(sexe,perso,nom,age,variableargent,salaire,nomlycee,spe,metier,domicile,transport,choixmagasin)
-
                 # Détection choix de l'article
                 # --> Détecte d'abords si le joueur a assez d'argent et si l'article est déjà acheté
                 # --> Si le joueur possède l'article et souhaite le revendre
@@ -865,7 +863,7 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,choixdom
                         # Variable pour la boucle du compte rendu
                         compterendu=True
 
-                        # Boucle pour faire tourner la page des options du voyage
+                        # Boucle pour faire tourner la page du compte rendu du voyage
                         while compterendu:
                             # Mise en place de l'affichage de la fenêtre
                             pygame.display.update()
@@ -948,33 +946,25 @@ def principal_femme():
 def principal_homme():
     principal(2,random.choice(imageshommes),random.choice(nomshommes),0,variableargent,0,choixlycee,choix,choixmetier,choixdomicile,choixtransport,choixanimal)
 
-## Fonction principale: au début - spécifications et mise en place d'autres couleurs, de variables et création des textes
+
+## Fonction principale
+# Fait tourner les éléments principaux du jeu
+
 def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,transport,animaux):
+    # Spécifications et mise en place de variables et création des textes
     #Mise en place de la musique
     pygame.mixer.init()
     pygame.mixer.music.load(song2)
     pygame.mixer.music.set_volume(0.05)
     pygame.mixer.music.play(-1)
 
-    variableage = age
-    variableargent = argent
-
-    # Variable pour contenir le choix de la spécialité et le choix du métier
-    choix=spe
-    choixmetier=metier
-
-    # Variables pour les erreurs
-    erreur = 0
-    erreur2 = 0
-
-    #Variable pour les différentes pages et boucles du jeu
-    fin = False
-    edu=False
-    jeu=False
-    prop=False
-    bien=False
-    destination=False
-    terminer=False
+    # Variables
+    erreurspe = 0 # Variable pour les erreurs
+    erreurmet = 0 # Variable pour les erreurs
+    variableage = age # Variable de l'age
+    variableargent = argent # Variable de l'argent
+    choix=spe # Variable de la spécialité
+    choixmetier=metier # Variable du métier
 
     # Listes vides pour contenir le choix du domicile, du transport et des animaux de compagnie
     choixdomicile=domicile
@@ -983,28 +973,28 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
 
     # Variables pour stocker l'affichage du texte pour ensuite le blit
     # Texte de la page principale
-    nom1 = smallfont.render('Nom: '+nom , True , color)
-    age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
-    retourmenu = smallfont.render('Retour' , True , color)
-    plus = smallfont.render('+' , True , color)
-    annee = smallfont.render('une année' , True , color)
-    retour = smallfont.render('retour' , True , color)
-    argent = bigfont.render(str(variableargent)+"  "+'€', True , color)
-    pasdespe = smallfont.render('Pas de spécialité!' , True , color_dark)
-    pasdemet = smallfont.render('Pas de métier!' , True , color_dark)
+    nom1 = smallfont.render('Nom: '+nom , True , color) # Création du texte
+    age = smallfont.render('Age:'+"  "+str(variableage) , True , color) # Création du texte
+    retourmenu = smallfont.render('Retour' , True , color) # Création du texte
+    plus = smallfont.render('+' , True , color) # Création du texte
+    annee = smallfont.render('une année' , True , color) # Création du texte
+    retour = smallfont.render('retour' , True , color) # Création du texte
+    argent = bigfont.render(str(variableargent)+"  "+'€', True , color) # Création du texte
+    pasdespe = smallfont.render('Pas de spécialité!' , True , color_dark) # Création du texte
+    pasdemet = smallfont.render('Pas de métier!' , True , color_dark) # Création du texte
 
     # Texte de la page éducation
-    education = smallfont.render('Education' , True , color)
-    enseignement = bigfont.render('Enseignement' , True , color)
-    etudes = bigfont.render('Etudes supérieures' , True , color)
-    metier = bigfont.render('Métiers' , True , color)
-    jeune = bigfont.render("Vous êtes trop jeune pour aller à l'école!" , True , color)
-    revenez = bigfont.render("Revenez quand vous aurez 3 ans!" , True , color)
+    education = smallfont.render('Education' , True , color) # Création du texte
+    enseignement = bigfont.render('Enseignement' , True , color) # Création du texte
+    etudes = bigfont.render('Etudes supérieures' , True , color) # Création du texte
+    metier = bigfont.render('Métiers' , True , color) # Création du texte
+    jeune = bigfont.render("Vous êtes trop jeune pour aller à l'école!" , True , color) # Création du texte
+    revenez = bigfont.render("Revenez quand vous aurez 3 ans!" , True , color) # Création du texte
     nommaternelle = smallfont.render(random.choice(listematernelle) , True , color) # Choix aléatoire du nom de l'établissement
     nomprimaire = smallfont.render(random.choice(listeprimaire) , True , color) # Choix aléatoire du nom de l'établissement
     nomcollege = smallfont.render(random.choice(listecollege) , True , color) # Choix aléatoire du nom de l'établissement
     nomlyceee = smallfont.render(nomlycee , True , color) # Choix aléatoire du nom de l'établissement
-    faireunchoix = smallfont.render("Choisissez votre spécialité:" , True , color)
+    faireunchoix = smallfont.render("Choisissez votre spécialité:" , True , color) # Création du texte
     nomuniversite1 = smallfont.render(listeuniversite[0] , True , color) # Extraction des noms de la liste et création du texte
     nomuniversite2 = smallfont.render(listeuniversite[1] , True , color) # Extraction des noms de la liste et création du texte
     nomuniversite3 = smallfont.render(listeuniversite[2] , True , color) # Extraction des noms de la liste et création du texte
@@ -1015,35 +1005,45 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
     nomuniversite8 = smallfont.render(listeuniversite[7] , True , color) # Extraction des noms de la liste et création du texte
     nomuniversite9 = smallfont.render(listeuniversite[8] , True , color) # Extraction des noms de la liste et création du texte
     specialite = smallfont.render("Spécialité:"+"  "+ choix , True , color) # Création du texte en fonction de la spécialité qui sera choisie
-    minijeu = bigfont2.render("Mini-Jeu" , True , color)
-    dixmillepartie1 = smallfont.render('Gagnez' , True , color)
-    dixmillepartie2 = smallfont.render('10k' , True , color)
-    dixmillepartie3 = smallfont.render('par jeu!' , True , color)
+    minijeu = bigfont2.render("Mini-Jeu" , True , color) # Création du texte
+    dixmillepartie1 = smallfont.render('Gagnez' , True , color) # Création du texte
+    dixmillepartie2 = smallfont.render('10k' , True , color) # Création du texte
+    dixmillepartie3 = smallfont.render('par jeu!' , True , color) # Création du texte
 
     # Texte de la page propriété
-    tropjeune1 = bigfont.render('Il faut être majeur' , True , color)
-    tropjeune2 = bigfont.render('pour acheter des articles!' , True , color)
-    propriete = smallfont.render('Propriété' , True , color)
-    proprietebig = bigfont.render('Propriété' , True , color)
-    domicile1 = smallfont.render('Domicile:' , True , color)
-    domicile2 = smallfont.render('domicile' , True , color)
-    transport1 = smallfont.render('Transport:' , True , color)
-    transport2 = smallfont.render('transport' , True , color)
-    animal1 = smallfont.render('Animaux:' , True , color)
-    animal2 = smallfont.render('animal' , True , color)
-    aucun = smallfont.render("Vous n'avez aucun" , True , color)
-    acheter = smallfont.render('Acheter un' , True , color)
+    propriete = smallfont.render('Propriété' , True , color) # Création du texte
+    proprietebig = bigfont.render('Propriété' , True , color) # Création du texte
+    tropjeune1 = bigfont.render('Il faut être majeur' , True , color) # Création du texte
+    tropjeune2 = bigfont.render('pour acheter des articles!' , True , color) # Création du texte
+    domicile1 = smallfont.render('Domicile:' , True , color) # Création du texte
+    domicile2 = smallfont.render('domicile' , True , color) # Création du texte
+    transport1 = smallfont.render('Transport:' , True , color) # Création du texte
+    transport2 = smallfont.render('transport' , True , color) # Création du texte
+    animal1 = smallfont.render('Animaux:' , True , color) # Création du texte
+    animal2 = smallfont.render('animal' , True , color) # Création du texte
+    aucun = smallfont.render("Vous n'avez aucun" , True , color) # Création du texte
+    acheter = smallfont.render('Acheter un' , True , color) # Création du texte
 
     # Texte de la page bien-être
-    bienetre = smallfont.render('Bien-être' , True , color)
-    tropjeune3 = bigfont.render('Il faut avoir 16 ans' , True , color)
-    tropjeune4 = bigfont.render('pour voyager!' , True , color)
-    ladestination = mediumfont.render('Choisir sa:' , True , color2)
-    destination = smallfont.render('Destination' , True , color)
-    destinationbig = bigfont.render('Voyage' , True , color)
-    cliquezdrapeau = smallfont.render('Cliquez sur le drapeau du pays de votre choix...' , True , color_dark)
-    envolezvous = smallfont.render('... et envolez vous vers des vacances de rêve!' , True , color_dark)
+    bienetre = smallfont.render('Bien-être' , True , color) # Création du texte
+    tropjeune3 = bigfont.render('Il faut avoir 16 ans' , True , color) # Création du texte
+    tropjeune4 = bigfont.render('pour voyager!' , True , color) # Création du texte
+    ladestination = mediumfont.render('Choisir sa:' , True , color2) # Création du texte
+    destinationtext = smallfont.render('Destination' , True , color) # Création du texte
+    destinationbig = bigfont.render('Voyage' , True , color) # Création du texte
+    cliquezdrapeau = smallfont.render('Cliquez sur le drapeau du pays de votre choix...' , True , color_dark) # Création du texte
+    envolezvous = smallfont.render('... et envolez vous vers des vacances de rêve!' , True , color_dark) # Création du texte
 
+    # Variable pour les différentes pages et boucles du jeu
+    edu=False
+    jeu=False
+    prop=False
+    bien=False
+    destination=False
+    terminer=False
+
+    # Variable pour la boucle du jeu
+    fin = False
 
 ## Boucle infinie qui fait tourner le jeu
 
@@ -1053,7 +1053,6 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
         pygame.draw.rect(fenetre, (255,204,204), pygame.Rect(50, 50, width-100, height-100))
         fenetre.blit(iconfond, (500,210))
         fenetre.blit(perso, (20,250))
-
         # Détection de la position de la souris
         mouse = pygame.mouse.get_pos()
 
@@ -1066,18 +1065,16 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
             # Vérifie si la souris est cliquée
             if event.type == pygame.MOUSEBUTTONDOWN:
 
-
 ## Page éducation
 
                 # Ouverture page éducation
                 if 900 <= mouse[0] <= 900+200 and 300 <= mouse[1] <= 300+50:
-                    # Variable edu pour ouvrir et fermer la page éducation
-                    edu=True
-                    # Variables qui contiennent le nom des options en fonction de la spécialité
                     # Création des textes avec le nom du choix de spécialité et du choix de métier
                     nomduchoix = smallfont.render(choix , True , color)
                     nomdumetier = smallfont.render(choixmetier , True , color)
                     nomdumetier2 = mediumfont.render(choixmetier , True , color)
+
+                    # Variables qui contiennent le nom des options en fonction de la spécialité
                     option1 = ""
                     option2 = ""
                     option3 = ""
@@ -1085,15 +1082,21 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                     option5 = ""
                     a=0
 
-                    # Boucle pour la page éducation
+                    # Variable pour la page éducation
+                    edu=True
+
+                    # Boucle pour faire tourner la page éducation
                     while edu:
+                        # Mise en place de l'affichage de la fenêtre
                         pygame.display.update()
                         fenetreedu = pygame.display.set_mode((width,height))
                         fenetreedu.fill(background_colour)
+                        # Détection de la position de la souris
                         mouse = pygame.mouse.get_pos()
 
-                        # Recherche d'évènements
+                        # Détection d'événements
                         for event in pygame.event.get():
+                            # Vérifie si la souris est cliquée
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 # Détection de sélection des boutons
                                 if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
@@ -1138,7 +1141,8 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                         choix = listeuniversite[8]
                                         nomduchoix = smallfont.render(choix , True , color)
                                         specialite = smallfont.render("Spécialité:"+"  "+ choix , True , color)
-                                # Sélection des boutons du métier quand le personnage aura 19 ans
+
+                                # Sélection des boutons du métier quand le personnage aura 24 ans
                                 # Le métier choisi sera stocké dans la variable choixdumetier et le texte sera crée avec la variable nomdumetier
                                 if variableage == 24:
                                     if 710 <= mouse[0] <= 710+30 and 262 <= mouse[1] <= 262+30:
@@ -1167,29 +1171,32 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                         nomdumetier2 = mediumfont.render(choixmetier , True , color)
                                         salaire = option005
 
-                                # Option pour jouer au mini-jeu
+                                # Option pour jouer au mini-jeu quand le personnage aura plus de 24 ans
                                 if variableage > 24:
                                     if 400 <= mouse[0] <= 400+400 and 430 <= mouse[1] <= 430+200:
+                                        # Variable pour la page du jeu
                                         jeu=True
+
+                                        # Boucle pour faire tourner la page du jeu
                                         while jeu:
-                                            # création de la fenêtre
+                                            # Création de la fenêtre
                                             pygame.display.update()
                                             fenetrejeu = pygame.display.set_mode((width,height))
 
-                                            # charger le game
+                                            # Charger le game
                                             game = Game()
 
                                             # Variable détection de fin
                                             game.enroute=True
                                             game.gain=False
 
-                                            # variable pour faire tourner le jeu
+                                            # Variable pour faire tourner le jeu
                                             running= True
 
-                                            #boucle tant que cette condition est vrai
+                                            # Boucle tant que cette condition est vrai
                                             while running:
                                                 mouse = pygame.mouse.get_pos()
-                                                # appliquer l'arriere plan
+                                                # Appliquer l'arriere plan
                                                 fenetrejeu.blit(background, (0, 0))
                                                 # Bouton retour à la page principale
                                                 if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
@@ -1197,9 +1204,9 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                                 else:
                                                     pygame.draw.rect(fenetrejeu,color_dark,[50,50,125,50])
                                                 fenetrejeu.blit(retour , (60,50))
-                                                #Commencer le jeu
+                                                # Commencer le jeu
                                                 if game.enroute:
-                                                    #déclencher les instruction de la partie
+                                                    # Déclencher les instruction de la partie
                                                     game.update(fenetrejeu)
                                                 elif not game.enroute and game.gain:
                                                     variableargent = variableargent + 10000
@@ -1208,24 +1215,25 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                                 else:
                                                     running=False
                                                     jeu=False
-                                                # ajouter un son pour le projectile
+                                                # Ajouter un son pour le projectile
                                                 son = pygame.mixer.Sound('laser.mp3')
-                                                # mettre à jour l'ecran
+                                                # Mettre à jour l'ecran
                                                 pygame.display.flip()
 
 
-                                                # Boucle pour les évènements et pour fermer la page
+                                                # Détection d'événements
                                                 for event in pygame.event.get():
+                                                    # Vérifie si la souris est cliquée
                                                     if event.type == pygame.MOUSEBUTTONDOWN:
                                                         if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
                                                             pygame.display.update()
                                                             jeu=False
                                                             running= False
 
-                                                    #detecter si on lache une touche du clavier
+                                                    # Detecter si on lache une touche du clavier
                                                     elif event.type == pygame.KEYDOWN:
                                                         game.pressed[event.key]= True
-                                                        #detecter si la touche espace est enclenchée pour lancer un projectile
+                                                        # Detecter si la touche espace est enclenchée pour lancer un projectile
                                                         if event.key == pygame.K_SPACE and game.tirer.full_barre_p():
                                                             game.tirer.pourcentage=0
                                                             game.vaisseau.lancer_projectile()
@@ -1398,7 +1406,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             else:
                                 pygame.draw.rect(fenetreedu,color_bred,[710,662,30,30])
 
-                        # Affichage du métier choisis après les études
+                        # Possibilite de jouer au mini-jeu a partir de 24 ans
                         if variableage > 24:
                             fenetreedu.blit(bannermiddle , (358,170))
                             fenetreedu.blit(nomdumetier2 , (450,250))
@@ -1416,18 +1424,19 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             fenetreedu.blit(dixmillepartie2 , (940,425))
                             fenetreedu.blit(dixmillepartie3 , (910,475))
 
-
 ## Page propriété
 
                 # Ouverture de la page propriété
                 if 900 <= mouse[0] <= 900+200 and 400 <= mouse[1] <= 400+50:
-                    # Variable prop pour ouvrir et fermer la page propriété
+                    # Variable pour la page propriété
                     prop=True
-                    # Boucle pour la page propriété
+                    # Boucle pour faire tourner la page propriété
                     while prop:
+                        # Mise en place de l'affichage de la fenêtre
                         pygame.display.update()
                         fenetreprop = pygame.display.set_mode((width,height))
                         fenetreprop.fill(background_colour)
+                        # Détection de la position de la souris
                         mouse = pygame.mouse.get_pos()
 
                         # Bouton retour à la page principale
@@ -1445,6 +1454,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                         # Rectangles pour le décor
                         pygame.draw.rect(fenetreprop,color_dark,[50,165,1080,600])
 
+                        # Bloque l'accès aux mineurs
                         if variableage < 18:
                             fenetreprop.blit(tropjeune1 , (360,350))
                             fenetreprop.blit(tropjeune2 , (290,450))
@@ -1511,8 +1521,9 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             fenetreprop.blit(acheter , (840,625))
                             fenetreprop.blit(animal2 , (880,675))
 
-                        # Boucle pour les évènements et pour fermer la page
+                        # Détection d'événements
                         for event in pygame.event.get():
+                            # Vérifie si la souris est cliquée
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
                                     pygame.display.update()
@@ -1529,22 +1540,23 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                 if 794 <= mouse[0] <= 794+286 and 625 <= mouse[1] <= 625+100:
                                     lemagasin(3,listeanimal,choixanimal,sexe,perso,nom,variableage,variableargent,salaire,nomlycee,choix,choixmetier,choixdomicile,choixtransport,choixanimal)
 
-
 ## Page bien-être
 
                 # Ouverture de la page bien-être
                 if 900 <= mouse[0] <= 900+200 and 500 <= mouse[1] <= 500+50:
-                    # Variable bien pour ouvrir et fermer la page bien-être
+                    # Variable pour la page bien-être
                     bien=True
-                    # Boucle pour la page bien-être
+
+                    # Boucle pour faire tourner la page bien-être
                     while bien:
-                        # création de la fenêtre
+                        # Mise en place de l'affichage de la fenêtre
                         pygame.display.update()
                         fenetrebien = pygame.display.set_mode((width,height))
                         fenetrebien.fill(background_colour)
+                        # Détection de la position de la souris
                         mouse = pygame.mouse.get_pos()
 
-                        #Voyager en fonction de l'age
+                        # Bloque l'accès aux moins de 16 ans
                         if variableage < 16:
                             # Titre de la page
                             pygame.draw.rect(fenetrebien,color_dark,[230,25,900,100])
@@ -1560,7 +1572,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             else:
                                 pygame.draw.rect(fenetrebien,color_blue,[500,425,250,100])
                             fenetrebien.blit(ladestination , (530,350))
-                            fenetrebien.blit(destination , (532,450))
+                            fenetrebien.blit(destinationtext , (532,450))
 
                         # Bouton retour à la page principale
                         if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
@@ -1569,7 +1581,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             pygame.draw.rect(fenetrebien,color_dark,[50,50,125,50])
                         fenetrebien.blit(retour , (60,50))
 
-                        # Boucle pour les évènements et pour fermer la page
+                        # Détection d'événements
                         for event in pygame.event.get():
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 if 50 <= mouse[0] <= 125+50 and 50 <= mouse[1] <= 50+50:
@@ -1577,6 +1589,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                     bien=False
                                 if 500 <= mouse[0] <= 250+500 and 425 <= mouse[1] <= 100+425:
                                     destination=True
+                                    # Boucle pour faire tourner la page des options de destination
                                     while destination:
                                         pygame.display.update()
                                         fenetrebien = pygame.display.set_mode((width,height))
@@ -1605,7 +1618,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                         fenetrebien.blit(austria , (950,565))
                                         fenetrebien.blit(envolezvous , (240,715))
 
-                                        # Boucle pour les évènements et pour fermer la page
+                                        # Détection d'événements
                                         for event in pygame.event.get():
                                             if event.type == pygame.MOUSEBUTTONDOWN:
                                                 #1
@@ -1695,14 +1708,14 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
                         # Il ne peut pas avancer d'un an s'il n'a pas choisi de spécialité à 19 ans
                         elif variableage == 19 and choix == "":
-                            erreur = erreur+1
+                            erreurspe = 1
                         # Si une spécialité est choisie il peut avancer
                         elif variableage == 19 and choix != "":
                             variableage = variableage+1
                             age = smallfont.render('Age:'+"  "+str(variableage) , True , color)
                         # Il ne peut pas avancer d'un an s'il n'a pas choisi de métier à 24 ans
                         elif variableage == 24 and choixmetier == "":
-                            erreur2 = erreur2+1
+                            erreurmet = 1
                         # Si un métier est choisi il peut avancer et recevra son premier salaire
                         elif variableage == 24 and choixmetier != "":
                             variableage = variableage+1
@@ -1719,19 +1732,22 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                 argent = bigfont.render(str(variableargent)+"  "+'€', True , color)
                             fenetre.blit(argent , (865,125))
 
-
                     # Si la personne est arrivée à 100 ans, le jeu se termine
                     else:
+                        # Variable pour la boucle terminer
                         terminer= True
 
+## Affichage de l'écran de fin
 
-                    # Affichage de l'écran de fin
+                    # Boucle pour faire tourner la page du compte rendu de la vie du joueur
                     while terminer:
+                        # Mise en place de l'affichage de la fenêtre
                         pygame.display.update()
                         fenetretermine = pygame.display.set_mode((width,height))
                         fenetretermine.fill(background_colour)
+                        # Détection de la position de la souris
                         mouse = pygame.mouse.get_pos()
-                        # Texte de terminer
+                        # Textes
                         termine = bigfont.render("Vous avez atteint 100 ans, le jeu est terminé!" , True , color)
                         nomtermine = smallfont.render('Nom: '+ nom , True , color)
                         agetermine = smallfont.render('Age : '+str(variableage), True , color)
@@ -1804,7 +1820,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                     fenetretermine.blit(optionani , (d-1000,dd+50))
                                 d=d+250
 
-                        #On parcours la liste de tous les événements reçus
+                        # Détection d'événements
                         for event in pygame.event.get():
                             #Si un de ces événements est de type QUIT on ferme le jeu
                             if event.type == QUIT:
@@ -1812,14 +1828,12 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                                 fin = True
                                 pygame.display.quit()
 
-
 ## Bouton retour
 
                 # Bouton retour au menu du départ
                 if 900 <= mouse[0] <= 900+200 and 600 <= mouse[1] <= 600+50:
                     sexe=0
                     depart()
-
 
 ## Mise en place des rectangles des boutons de le page pricipale qui changent de couleurs si la souris est au-dessus
 
@@ -1853,7 +1867,6 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
         else:
             pygame.draw.rect(fenetre,color_dark,[525,510,200,100])
 
-
 ## Affichage des éléments de la page principale
 
         # Affichage de l'identité sur un rectangle par superposition
@@ -1882,15 +1895,14 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
         fenetre.blit(retourmenu , (945,600))
 
         # Erreurs
-        if erreur > 0 and variableage == 19 and choix == "":
+        if erreurspe == 1 and variableage == 19 and choix == "":
             fenetre.blit(pasdespe , (485,640))
-        if erreur2 > 0 and variableage == 24 and choixmetier == "":
+        if erreurmet == 1 and variableage == 24 and choixmetier == "":
             fenetre.blit(pasdemet , (510,640))
 
         # Update le display du jeu
         pygame.display.update()
         pygame.display.flip()
-
 
 ## Faire tourner le jeu
 # Initialisation de pygame et de la musique
