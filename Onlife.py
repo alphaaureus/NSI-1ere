@@ -134,8 +134,10 @@ australia=pygame.transform.scale(australia1,(200,120))
 austria1=pygame.image.load('austria.png')
 austria=pygame.transform.scale(austria1,(200,120))
 
-# Variable pour le sexe choisis
-sexe = 0
+# Listes vides pour contenir le choix du domicile, du transport et des animaux de compagnie
+choixdomicile=[]
+choixtransport=[]
+choixanimal=[]
 
 # Listes de noms
 nomsfemmes=["Clara Cuoghi","Aurélie Gallet","Jamie Robin","Charlie Roussel","Riley Dumont","Ambre Meyer","Cléa Blanchard","Iris Martinez","Elie Roux","Manon Roger","Alice Fabre","Lina Lacroix","Maria Rolland","Rose Jacob","Lucie Rodriguez"]
@@ -145,13 +147,15 @@ nomshommes=["Rayane Dahmoul","Haroun Abidi","Alex Martin","Claude Thomas","Sam R
 imagesfemmes=[femme1,femme2,femme3,femme4]
 imageshommes=[homme1,homme2,homme3,homme4,homme5]
 
-# Listes pour la page enseignement
+# Listes des établissements, des spécialités et des métiers
 listematernelle=["Ecole maternelle Béré","Ecole maternelle Le Coudray","Ecole maternelle Henri Bergson","Ecole maternelle Jules Ferry","Ecole maternelle Claude Monet","Ecole maternelle Prince Bois","Ecole maternelle Le Bourgeau","Ecole maternelle du Massif","Ecole maternelle Molière","Ecole maternelle du Centre"]
 listeprimaire=["Ecole primaire Guillaume Apollinaire","Ecole primaire Michel Servet","Ecole primaire Albert Barraud","Ecoles primaire les Néréides","Ecole primaire Jean Jaurès","Ecole primaire Jacques Prévert","Ecole primaire Charles Perrault","Ecole primaire La Clé des Champs","Ecole primaire Les Nondales","Ecole primaire L'Arbre Enchanté"]
 listecollege=["Collège Chaptal","Collège Plaisance","Collège Jean Giono","Collège les Fontainettes","Collège Victor Hugo","Collège des Trois Vallées","Collège la Sablière","Collège Antoine de Saint-Exupéry","Collège Claude Nicolas le Doux","Collège Les Franchises"]
 listelycee=["Lycée Jean Rostand","Lycée Henri Vincenot","Lycée Camille Claudel","Lycée Pasteur","Lycée Gustave Eiffel","Lycée Voltaire","Lycée Parc des Loges","Lycée Martin Luther King","Lycée Honoré Romane","Lycée Jean Monnet"]
 listeuniversite=["Commerce","Ingénieur","Lettres","Arts","Politique","Sc.Sociales","Droit","Architecture","Médecine"]
 dicometiers=[["Caissier",1750],["Commercial",4108],["Acheteur",3500],["Ag.Immobilier",3500],["Ag.Marketing",5083],["Aéronautique",5100],["Chimie",5500],["Environnement",2000],["Génie Civil",4750],["Mécanique",2300],["Ecrivain",2767],["Libraire",2000],["Traducteur",2500],["Editeur",5000],["Enseignant",3500],["Illustrateur",3986],["Photographe",1430],["Sculpteur",1800],["Peintre",4400],["Galeriste",2240],["Ministre",14900],["Politologue",1430],["Diplomate",3700],["Maire",8454],["Parlementaire",8757],["Démographe",3600],["Ethnologue",2500],["Historien",1500],["Sociologue",2160],["Assistant soc.",1700],["Avocat",2600],["Juge",4447],["Notaire",8700],["Huissier",8000],["Greffier",2580],["Architecte",3300],["Urbaniste",2800],["Décorateur",4000],["Installateur",2000],["Coloriste",1700],["Médecin",10684],["Pharmacien",3850],["Psychologie",3200],["Chirurgien",11500],["Infirmier",1800]]
+
+# Listes des articles
 listedomicile=[["Studio - 1",98],["Studio - 2",127],["Studio - 3",75],["Studio - 4",82],["Studio - 5",250],["Appart - 1",249],["Appart - 2",450],["Appart - 3",330],["Appart - 4",279],["Appart - 5",427],["Maison - 1",985],["Maison - 2",824],["Maison - 3",675],["Maison - 4",310],["Maison - 5",639],["Villa - 1",1690],["Villa - 2",2780],["Villa - 3",3150],["Villa - 4",1330],["Villa - 5",1490]]
 listetransport=[["Vélo - 1",1.75],["Vélo - 2",4.6],["Moto - 1",5.9],["Moto - 2",10.3],["Berline - 1",15.5],["Berline - 2",22.3],["Break - 1",16.6],["Break - 2",19.2],["Monospace - 1",23.6],["Monospace - 2",28.1],["Citadines - 1",16.2],["Citadines - 2",22.9],["4x4 - 1",29],["4x4 - 2",31.8],["Limousine - 1",47],["Limousine - 2",72],["Bateau - 1",159],["Bateau - 2",385],["Jet Privé - 1",2950],["Jet Privé - 2",5000]]
 listeanimal=[["Chien - 1",1],["Chien - 2",1.5],["Chat - 1",1],["Chat - 2",1.25],["Poisson - 1",0.15],["Poisson - 2",0.25],["Furet - 1",2.5],["Furet - 2",3.25],["Cheval - 1",6],["Cheval - 2",9.75],["Lapin - 1",3.5],["Lapin - 2",4.45],["Hamster - 1",1.7],["Hamster - 2",2.25],["Oiseau - 1",5.25],["Oiseau - 2",8.75],["Poule - 1",0.2],["Poule - 2",0.5],["Cochon - 1",3.75],["Cochon - 2",6.5]]
@@ -165,6 +169,13 @@ for ligne in lignes : # On itère la variable ligne sur chaque élément de lign
     liste=ligne.rstrip().split(';') # On crée la liste sans retour à la ligne
     contenuvoyage.append(liste) # On ajoute la liste obtenue à contenuvoyage
 file.close() # On ferme le fichier
+
+# Variables
+sexe = 0 # Variable pour le sexe choisis
+variableargent = randint(100, 100000) #Variable de l'argent
+choixlycee=random.choice(listelycee) # Variable du lycée
+choix="" # Variable du choix de la spécialité
+choixmetier="" # Variable du choix du métier
 
 #Musique
 song1 = "bensound-onceagain.mp3"
@@ -604,7 +615,7 @@ def lemagasin(num,liste,choixliste,sexe,perso,nom,age,argent,salaire,nomlycee,sp
 ## Fonction du voyage
 #Fonction pour pouvoir voyager dans une sélection de 20 pays
 
-def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,transport,animaux):
+def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,choixdomicile,choixtransport,choixanimaux):
     # Variables
     erreuroptions=0 # Variable pour les erreurs
     erreurargent=0 # Variable pour les erreurs
@@ -785,7 +796,6 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
         else:
             pygame.draw.rect(fenetrevoyage,color_bred,[300,660,200,75])
         fenetrevoyage.blit(annuler , (329,665))
-
         if 700 <= mouse[0] <= 200+700 and 660 <= mouse[1] <= 75+660:
             pygame.draw.rect(fenetrevoyage,color_spring,[700,660,200,75])
         else:
@@ -800,17 +810,17 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
         for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
             # Vérifie si la souris est cliquée
             if event.type == pygame.MOUSEBUTTONDOWN:
-                #Annuler
+                # Annule la réservation du voyage
                 if 300 <= mouse[0] <= 200+300 and 660 <= mouse[1] <= 75+660:
-                    principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,transport,animaux)
-                #Classe
+                    principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,choixdomicile,choixtransport,choixanimaux)
+                # Stocker l'option de la classe
                 if 357 <= mouse[0] <= 178+357 and 150 <= mouse[1] <= 50+150:
                     laclasse=1
                 if 593 <= mouse[0] <= 170+593 and 150 <= mouse[1] <= 50+150:
                     laclasse=2
                 if 820 <= mouse[0] <= 175+820 and 150 <= mouse[1] <= 50+150:
                     laclasse=3
-                #Durée
+                # Stocker l'option de la durée
                 if 340 <= mouse[0] <= 60+340 and 254 <= mouse[1] <= 50+254:
                     laduree=1
                 if 440 <= mouse[0] <= 60+440 and 254 <= mouse[1] <= 50+254:
@@ -825,12 +835,12 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
                     laduree=6
                 if 942 <= mouse[0] <= 65+942 and 254 <= mouse[1] <= 50+254:
                     laduree=7
-                #Nourriture
+                # Stocker l'option de la nourriture
                 if 440 <= mouse[0] <= 270+440 and 351 <= mouse[1] <= 53+351:
                     lanourriture=1
                 if 775 <= mouse[0] <= 220+775 and 351 <= mouse[1] <= 53+351:
                     lanourriture=2
-                #Activités
+                # Stocker l'option du nombre d'activités
                 if 460 <= mouse[0] <= 50+460 and 450 <= mouse[1] <= 50+450:
                     lactivite=1
                 if 560 <= mouse[0] <= 50+560 and 450 <= mouse[1] <= 50+450:
@@ -841,27 +851,33 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
                     lactivite=4
                 if 867 <= mouse[0] <= 50+867 and 450 <= mouse[1] <= 53+450:
                     lactivite=5
-                #Transport
+                # Stocker l'option du transport
                 if 512 <= mouse[0] <= 120+512 and 550 <= mouse[1] <= 49+550:
                     letransport=1
                 if 680 <= mouse[0] <= 190+680 and 550 <= mouse[1] <= 52+550:
                     letransport=2
                 #Valider
                 if 700 <= mouse[0] <= 200+700 and 660 <= mouse[1] <= 75+660:
+                    # Affiche un message d'erreur si une des options n'est pas selectionnée
                     if laclasse==0 or laduree==0 or lanourriture==0 or lactivite==0 or letransport==0:
                         erreuroptions=1
                     else:
-                        prixvoy=True
-                        while prixvoy:
+                        # Variable pour la boucle du compte rendu
+                        compterendu=True
+
+                        # Boucle pour faire tourner la page des options du voyage
+                        while compterendu:
+                            # Mise en place de l'affichage de la fenêtre
                             pygame.display.update()
                             fenetrevoyage = pygame.display.set_mode((width,height))
                             fenetrevoyage.fill(background_colour)
+                            # Détection de la position de la souris
                             mouse = pygame.mouse.get_pos()
 
-                            #Calcul du montant du voyage selon les options
+                            # Calcul du montant du voyage selon les options choisies
                             voyageprix=(int(contenuvoyage[pays][1+laclasse]))+(int(contenuvoyage[pays][4+laduree])*int(contenuvoyage[pays][11+lanourriture]))+(int(contenuvoyage[pays][13+lactivite]))+(int(contenuvoyage[pays][4+laduree])*int(contenuvoyage[pays][18+letransport]))+(int(contenuvoyage[pays][4+laduree])*int(contenuvoyage[pays][21]))
 
-                            #Création des textes pour la page
+                            # Création des textes pour la page
                             afficherprixvoyage1 = bigfont2.render("Compte Rendu :" , True , color2) # Création du texte
                             afficherprixvoyage01 = mediumfont.render("Destination : "+str(contenuvoyage[pays][0]) , True , color2) # Création du texte
                             afficherprixvoyage2 = mediumfont.render("Classe : " + optionsvoyage[1+laclasse], True , color2) # Création du texte
@@ -873,9 +889,9 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
                             afficherprixvoyage8 = smallfont.render("(nb de jours x prix par nuit)" , True , color2) # Création du texte
                             afficherprixvoyage9 = bigfont2.render("Prix :" , True , color2) # Création du texte
                             afficherprixvoyage10 = bigfont2.render(str(voyageprix) + "€" , True , color2) # Création du texte
-                            fenetrevoyage.blit(traveling , (600,40))
+                            fenetrevoyage.blit(traveling , (600,40)) # Affichage de la photo
 
-                            #Blit des textes sur l'écran
+                            # Blit des textes sur l'écran
                             fenetrevoyage.blit(afficherprixvoyage1 , (50,20))
                             fenetrevoyage.blit(afficherprixvoyage01 , (50,100))
                             fenetrevoyage.blit(afficherprixvoyage2 , (50,150))
@@ -888,13 +904,12 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
                             fenetrevoyage.blit(afficherprixvoyage9 , (50,500))
                             fenetrevoyage.blit(afficherprixvoyage10 , (50,570))
 
-                            #Annuler ou valider
+                            # Boutons annuler ou valider
                             if 300 <= mouse[0] <= 200+300 and 660 <= mouse[1] <= 75+660:
                                 pygame.draw.rect(fenetrevoyage,color_crimson,[300,660,200,75])
                             else:
                                 pygame.draw.rect(fenetrevoyage,color_bred,[300,660,200,75])
                             fenetrevoyage.blit(annuler , (329,665))
-
                             if 700 <= mouse[0] <= 200+700 and 660 <= mouse[1] <= 75+660:
                                 pygame.draw.rect(fenetrevoyage,color_spring,[700,660,200,75])
                             else:
@@ -902,47 +917,36 @@ def levoyage(pays,sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile
                             fenetrevoyage.blit(valider , (733,665))
 
                             #Afficher le message d'erreur
-                            if erreurargent > 0:
+                            if erreurargent == 1:
                                 fenetrevoyage.blit(toopoortotravel , (260,745))
 
                             # Détection d'événements
-                            for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+                            for event in pygame.event.get():   # On parcours la liste de tous les événements reçus
                                 # Vérifie si la souris est cliquée
                                 if event.type == pygame.MOUSEBUTTONDOWN:
-                                    #Annuler
+                                    # Annule la réservation du voyage
                                     if 300 <= mouse[0] <= 200+300 and 660 <= mouse[1] <= 75+660:
-                                        principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,transport,animaux)
+                                        principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,choixdomicile,choixtransport,choixanimaux)
                                     #Valider
                                     if 700 <= mouse[0] <= 200+700 and 660 <= mouse[1] <= 75+660:
+                                        # Affiche un message d'erreur si le joueur n'a pas assez d'argent
                                         if variableargent < voyageprix:
                                             erreurargent=1
                                         else:
-                                            variableargent=variableargent-voyageprix
-                                            principal(sexe,perso,nom,age,variableargent,salaire,nomlycee,spe,metier,domicile,transport,animaux)
+                                            variableargent=variableargent-voyageprix # Soustrait le prix du voyage à la somme d'argent
+                                            principal(sexe,perso,nom,age,variableargent,salaire,nomlycee,spe,metier,choixdomicile,choixtransport,choixanimaux) # Retour au jeu
 
 
 ## Fonction du sexe
-
-#Variables de l'age et de l'argent
-variableargent = randint(100, 100000)
-
-# Variable pour contenir le lycée et le choix de la spécialité et le choix du métier
-lycee2=random.choice(listelycee)
-choix=""
-choixmetier=""
-
-# Listes vides pour contenir le choix du domicile, du transport et des animaux de compagnie
-choixdomicile=[]
-choixtransport=[]
-choixanimal=[]
+# Débute le jeu en fonction du sexe choisi
 
 # Fonction pour faire tourner la fonction principale du jeu en tant que femme
 def principal_femme():
-    principal(1,random.choice(imagesfemmes),random.choice(nomsfemmes),0,variableargent,0,lycee2,choix,choixmetier,choixdomicile,choixtransport,choixanimal)
+    principal(1,random.choice(imagesfemmes),random.choice(nomsfemmes),0,variableargent,0,choixlycee,choix,choixmetier,choixdomicile,choixtransport,choixanimal)
 
 # Fonction pour faire tourner la fonction principale du jeu en tant qu'homme
 def principal_homme():
-    principal(2,random.choice(imageshommes),random.choice(nomshommes),0,variableargent,0,lycee2,choix,choixmetier,choixdomicile,choixtransport,choixanimal)
+    principal(2,random.choice(imageshommes),random.choice(nomshommes),0,variableargent,0,choixlycee,choix,choixmetier,choixdomicile,choixtransport,choixanimal)
 
 ## Fonction principale: au début - spécifications et mise en place d'autres couleurs, de variables et création des textes
 def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,transport,animaux):
@@ -1488,7 +1492,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             else:
                                 pygame.draw.rect(fenetreprop,color_bred,[447,625,286,100])
                             fenetreprop.blit(acheter , (500,625))
-                            fenetreprop.blit(transport1 , (510,675))
+                            fenetreprop.blit(transport2 , (510,675))
 
                             # Animal
                             if choixanimal==[]:
@@ -1505,7 +1509,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                             else:
                                 pygame.draw.rect(fenetreprop,color_bred,[794,625,286,100])
                             fenetreprop.blit(acheter , (840,625))
-                            fenetreprop.blit(animal1 , (880,675))
+                            fenetreprop.blit(animal2 , (880,675))
 
                         # Boucle pour les évènements et pour fermer la page
                         for event in pygame.event.get():
