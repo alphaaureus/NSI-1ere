@@ -28,9 +28,9 @@ class Tirer:
     def __init__(self):
         self.pourcentage = 0
         self.pourcentage_v = 500
-
     def add_pourcentage(self):
         self.pourcentage +=self.pourcentage_v/100
+
     def full_barre_p(self):
         if self.pourcentage>=100:
             return self.pourcentage>=100

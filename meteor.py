@@ -35,10 +35,10 @@ class MeteorEvent:
         self.game=game
         #groupe de sprite pour les meteor
         self.all_meteor=pygame.sprite.Group()
-
+    #ajouter des pourcentage pour la barre
     def add_pourcentage(self):
         self.pourcentage +=self.pourcentage_v/100
-
+    #fonction qui renvoie le pourcentage
     def full_barre(self):
         return self.pourcentage>=100
     def meteor_s(self):

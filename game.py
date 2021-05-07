@@ -20,6 +20,7 @@ class Game:
         self.meteorevent=MeteorEvent(self)
         self.tirer=Tirer()
     enroute=False
+    #fonction qui permet de soir si un Sprite entre en collision avec un autre
     def check_collision(self,sprite,group):
         return pygame.sprite.spritecollide(sprite,group,False,pygame.sprite.collide_mask)
 
