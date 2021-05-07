@@ -1829,7 +1829,7 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                         # Textes
                         termine = bigfont.render("Vous avez atteint 100 ans, le jeu est terminé!" , True , color)
                         nomtermine = smallfont.render('Nom: '+ nom , True , color)
-                        agetermine = smallfont.render('Age : '+str(variableage), True , color)
+                        metiertermine = smallfont.render('Métier : '+str(choixmetier), True , color)
                         domicile3 = smallfont.render('Domicile :' , True , color)
                         transport3 = smallfont.render('Transport :' , True , color)
                         animal3 = smallfont.render('Animal :' , True , color)
@@ -1842,10 +1842,12 @@ def principal(sexe,perso,nom,age,argent,salaire,nomlycee,spe,metier,domicile,tra
                         else:
                             argenttermine2 = str(variableargent)+" "+"€"
                         argenttermine = smallfont.render('Argent : '+argenttermine2, True , color)
+                        # Rectangle de décoration
+                        pygame.draw.rect(fenetretermine,color_dark,[50,50,1100,80])
                         # Affichage du texte de fin
-                        fenetretermine.blit(termine , (60,50))
+                        fenetretermine.blit(termine , (65,50))
                         fenetretermine.blit(nomtermine , (60,150))
-                        fenetretermine.blit(agetermine , (60,200))
+                        fenetretermine.blit(metiertermine , (60,200))
                         fenetretermine.blit(argenttermine , (60,250))
 
                         # Domicile
