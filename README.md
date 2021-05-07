@@ -1,6 +1,6 @@
 # ONLIFE
 
-Application du type "jeu de role" ou l'utilisateur se met dans la peau d'un personnage. (similairement a l'application "bitlife")
+Application du type "jeu de role" où l'utilisateur se met dans la peau d'un personnage (similairement à l'application "bitlife").
 
 
 # Sommaire
@@ -33,17 +33,17 @@ Application du type "jeu de role" ou l'utilisateur se met dans la peau d'un pers
 
 Clara------ Aide pour rechercher comment coder les éléments et transmets les informations dans le readme.
 
-Aurélie---- Page principal et les sous-parties, recherche d'informations pour les listes, écriture et relecture du readme.
+Aurélie---- Page principale et les sous-parties, recherche d'informations pour les listes, écriture et relecture du readme.
 
-Haroun----- Menu principal avec les différents boutons (Jouer, options, et quitter) et travail sur la conception visuelle global du jeu.
+Haroun----- Menu principal avec les différents boutons (Jouer, options, et quitter) et travail sur la conception visuelle global du jeu ainsi que du ppt pour la présentation.
 
-Rayane----- Menu de la deuxième page avec les boutons(Homme, Femme et retour) et mini-jeu (vaisseau qui tire sur des astéroides).
+Rayane----- Menu de la deuxième page avec les boutons (Homme, Femme et retour) ainsi que le mini-jeu (vaisseau qui tire sur des astéroides).
 
 
 ### 16 Semaines:
 - 2 semaines de mise en place
 - Coder les outils de base
-- Ameliorer jusqu'a la semaine 13 ou 14
+- Améliorer jusqu'a la semaine 13 ou 14
 - Tester et rectifier 2-3 semaines
 
 
@@ -52,7 +52,7 @@ Rayane----- Menu de la deuxième page avec les boutons(Homme, Femme et retour) e
 
 Nom du jeu: Onlife 
 
-Un jeu ludique avec des fins qui diffèrent tout le temps. L'univers explore les différents fins du jeu ... Ce sera un jeu de rôle. On aura le choix de créer un personnage (sexe,nom,prénom). On contrôle les choix du personnage et le but est de devenir le plus riche possible (et d'accumuler tous les bagdes). Il y aura des choix qui nous permettront d'améliorer nos attitudes ou de les faire baisser. On pourra contrôler plusieurs générations. Pour avancer dans le jeu, on devra aller à l'école, acheter des biens ou les revendre, se marier... Il n'y a pas réellement de fin.
+Un jeu ludique avec des fins qui diffèrentes tout le temps. L'univers explore les différents fins du jeu ... Ce sera un jeu de rôle. On aura le choix de créer un personnage. On contrôle les choix du personnage et le but est de devenir le plus riche possible ou de vivre le plus d'experiences différentes. En avançant dans le jeu, on devra aller à l'école, acheter des biens ou les revendre, voyager... Le jeu se termine quand la personne a 100 ans.
 
 
 
@@ -67,15 +67,15 @@ Seulement 16 semaines
 
 ### Etapes à suivre
 
-Downloader toutes les images dans le folder images, tous les fichiers .py et ouvrir puis éxécuter le fichier "Onlife". Pour l'instant il y a un menu avec les boutons jouer et quitter qui marchent. 
+Downloader tous les éléments du repositoire puis éxécuter le fichier "Onlife".
 
-Le bouton guide explique les règles principales du jeu et le bouton jouer nous emmène à un menu pour sélectionner le sexe. En fonction du sexe choisi, une page principale s'ouvrira avec un personnage aléatoire. Le nom est aussi aléatoire et en fonction du sexe. Il varie entre les noms des 4 personnes du groupe. Il est possible d'appuyer sur les boutons bien être, éducation et propriété qui vous ouvriront, chacun, une autre fenêtre. Il sera possible de fermer ces fenêtres avec le bouton pour vous ramener à la page principale. Il est également possible d'appuyer sur le bouton "+ une année" pour avancer dans le jeu ce qui va changer l'âge dans le cadre en haut à gauche de la page principale. 
+Le bouton guide explique les règles principales du jeu et le bouton jouer nous emmène à un menu pour sélectionner le sexe. En fonction du sexe choisi, une page principale s'ouvrira avec un personnage aléatoire. Le nom est aussi aléatoire et en fonction du sexe. Il est possible d'appuyer sur les boutons bien être, éducation et propriété qui vous ouvriront, chacun, une autre fenêtre. Il sera possible de fermer ces fenêtres avec le bouton pour vous ramener à la page principale mais on ne peut pas cliquer sur la croix rouge car le jeu ne se sauvegarde pas et c'est pour éviter des erreurs. Il est également possible d'appuyer sur le bouton "+ une année" pour avancer dans le jeu ce qui va changer l'âge dans le cadre en haut à gauche de la page principale. 
 
 La fenêtre éducation possède un titre qui change en fonction de l'âge, par exemple à 19 ans, le titre change d'enseignement" à "études supérieures". Des noms d'écoles sont affichés aléatoirement parmis les noms des dictionnaires. Puis en début d'université vous pouvez choisir votre spécialité. Vous aurez ainsi à 24 ans cinq choix de métiers en fonction de la spéciallité choisie. Puis vous pouvez jouer à un jeu de vaisseaux spatiaux afin de gagner plus d'argent.
 
 La fenêtre propriété contient trois catégories d'objets, les domiciles, les transports et les animaux. Chaque catégorie contient un magasin dans lequel on peut acheter ce que l'on veut mais il y a un maximum de 7 articles.
 
-La fenêtre bien-être n'est pas encore codée.
+La fenêtre bien-être s'ouvre sur une borne de "check-in" pour partir en voyage. Vous pouvez ensuite sélectionner votre destination, vos options pour le voyage puis vous aurez un compte rendu de vox choix et l'affichage d'un prix final. Après avoir payé, vous vous mettez en route vers le pays que vous avez choisi.
 
 
 
@@ -94,12 +94,13 @@ Mise à jour de la scéance du 16/02: Le mini-jeu est en cours de création, les
 
 Mise à jour de la scéance du 23/03: Les listes sont toutes crées. Un autre beug survient qu'on arrive pas a reproduire. Nous devons trouver un moyen de faire apparaitre des messages d'erreur.
 
+Mise à jour de la scéance du 07/05: La version 1.0 du jeu est complète.
 
 
 
 ### Quelles sont celles qu'on aura pas le temps de surmonter et qu'est-ce que cela implique comme évolution sur le projet final ?
 
-La seule chose qui pour l'instant sera impossible de faire c'est des barres de vie qui devaient consister à afficher le niveau d'intelligence, taux de bonheur etc. du personnage tout le long de sa vie. Pour l'instant nous avons décidé de le mettre de côté ce qui ne changera pas le principe du jeu. Nous devons également renoncer à offrir tous les choix que nous aurions voulu offrir (le choix de l'école, arrêter l'école en avance ou sauter des classes par exemple).
+La seule chose qui pour l'instant sera impossible de faire c'est des barres de vie qui devaient consister à afficher le niveau d'intelligence, taux de bonheur etc. du personnage tout le long de sa vie. Pour l'instant nous avons décidé de le mettre de côté ce qui ne changera pas le principe du jeu. Nous devons également renoncer à offrir tous les choix que nous aurions voulu offrir (déménager, le choix de l'école, arrêter l'école en avance ou sauter des classes par exemple).
 
 
 
@@ -110,8 +111,7 @@ La plupart des spécifications pour le décor de la fenêtre se trouvent au déb
 Nous avons utilisé la bibliothèque pygame et pygame.locals car c'était plus simple pour nous en temps que débutants étant donné que c'est du python et c'est simple à comprendre et manipuler. Une autre bibliotèque que nous avons choisi est "pygame_menu" car nous voulions faire un menu et cette bibliotèque était pratique pour en créer. Puis nous avons importé le module "random" pour pouvoir déterminer aléatoirement les noms des écoles et probablement autres choses par la suite. Nous avons un système d'import entre plusieurs fichiers python pour le mini-jeu car c'est une solution simple que nous avons determiné pour relier nos deux travaux et pour avoir plus d'organisation dans le code.
 Nous utilisons également temporairement la bibliothèque tkinter pour afficher des boites de dialogue afin de diriger le jouer pour qu'il sache quoi faire dans le jeu. Nous changerons vers une autre bibliothèque si nous trouvons un autre moyen d'afficher efficacement les boites de dialogue.
 
-Nous avons des fonctions différentes reliées entre elles. Une d'elle définit le début du jeu (la fonction "depart"), donc la page d'accueil pour choisir entre jouer qui retourne la fonction "sexe", les options et donc la fonction "option_the_game" et quitter qui ferme la page. Elle se base sur pygame_menu est elle est reliée soit à la fonction "option_the_game" qui est vide pour le moment, soit celle de la page, aussi à base de pygame_menu, pour choisir son sexe (fonction "sexe") qui nous emmène ensuite à la fonction homme ou femme selon le choix. Les fonctions homme ou femme retourne ensuite l'éxécution de la fonction principale avec comme argument 1 ou 2. Cette fonction "principal"  prend en argument le sexe qui est codé par le numéro 1 ou 2 selon le sexe choisis. La fonction principale comporte des variables utilisées ensuite, plus de spécifications pour le décor de la fenêtre et de plusieurs boucles dans une grosse boucle. La grosse boucle fait tourner la page principale et les sous boucles font tourner les différentes sous pages comme l'éducation ou la propriété. Il y a aussi des boucles pour la détection d'événements surtout à base de clicks de la souris car notre jeu fonctionne surtout à partir des actions et de la position de la souris.
-
+Nous avons des fonctions différentes reliées entre elles. Une d'elle définit le début du jeu (la fonction "depart"), donc la page d'accueil pour choisir entre jouer qui retourne la fonction "sexe", les options et donc la fonction "option_the_game" et quitter qui ferme la page. Elle se base sur pygame_menu est elle est reliée soit à la fonction "option_the_game" qui est vide pour le moment, soit celle de la page, aussi à base de pygame_menu, pour choisir son sexe (fonction "sexe") qui nous emmène ensuite à la fonction homme ou femme selon le choix. Les fonctions homme ou femme retourne ensuite l'éxécution de la fonction principale avec comme argument 1 ou 2. Cette fonction "principal"  prend en argument le sexe qui est codé par le numéro 1 ou 2 selon le sexe choisis. La fonction principale comporte des variables utilisées ensuite, plus de spécifications pour le décor de la fenêtre et de plusieurs boucles dans une grosse boucle. La grosse boucle fait tourner la page principale et les sous boucles font tourner les différentes sous pages comme l'éducation ou la propriété. Il y a aussi des boucles pour la détection d'événements surtout à base de clicks de la souris car notre jeu fonctionne surtout à partir des actions et de la position de la souris. Pour la page propriété, une fonction tourne faisant office de magasin pour acheter des articles et pour la page bien-être, une fonction tourne pour les choix du voyage.
 
 ##  Licenses
 This work is licensed under a GNU General Public License, version 3 (GPLv3).
